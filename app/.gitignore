@@ -19,8 +19,11 @@ Thumbs.db
 .idea/libraries
 .idea/modules.xml
 .idea/navEditor.xml
+.idea/modules
+.idea/shelf
 .idea/assetWizardSettings.xml
 *.iml
 captures/
 .externalNativeBuild
 .cxx
+.idea/.name

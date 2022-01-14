@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "39497034422",
+    "firebase_url": "https://shopee-app-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "shopee-app",
+    "storage_bucket": "shopee-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39497034422:android:7ed1fd76c82e8d60bcd417",
+        "android_client_info": {
+          "package_name": "com.example.mad_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "39497034422-73u67730lrro2p47g906mcveq3356813.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLX9ig8j7_AcfrwAYcO33g0iUybE2ZfMY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "39497034422-73u67730lrro2p47g906mcveq3356813.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -9,10 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.example.mad_project.R;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -37,24 +35,21 @@ public class RegisterActivity extends AppCompatActivity {
         Button regBtn = findViewById(R.id.register_buyer);
         Button button_register_seller = findViewById(R.id.register_seller);
         // save data to firebase and update firmware
-        regBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rootNode = FirebaseDatabase.getInstance();
-                reference = rootNode.getReference("Users");
-                reference.setValue("First data storage");
-                //Get all the values
-                String name = et_name.getText().toString();
-                String username = et_username.getText().toString();
-                String email = et_email.getText().toString();
-                String phoneNo = et_contact.getEditableText().toString();
-                String password = et_password.getEditableText().toString();
-                UserHelperClass helperClass = new UserHelperClass(name, username, email, phoneNo, password);
-                reference.child(phoneNo).setValue(helperClass);
-            }
+        regBtn.setOnClickListener(v -> {
+            rootNode = FirebaseDatabase.getInstance();
+            reference = rootNode.getReference("Users");
+            reference.setValue("First data storage");
+            // get all the values
+            String name = et_name.getText().toString();
+            String username = et_username.getText().toString();
+            String email = et_email.getText().toString();
+            String phoneNo = et_contact.getEditableText().toString();
+            String password = et_password.getEditableText().toString();
+            UserHelperClass helperClass = new UserHelperClass(name, username, email, phoneNo, password);
+            reference.child(phoneNo).setValue(helperClass);
         });
-        //button_register_seller.setOnClickListener(onRegister);
-    }//on create method end
+//        button_register_seller.setOnClickListener(onRegister);
+    }
 
     public boolean checkAll(String username, String name, String contact,
                             String email, String pwd) {

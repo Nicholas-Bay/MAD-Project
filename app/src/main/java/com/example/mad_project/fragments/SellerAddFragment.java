@@ -8,13 +8,13 @@ import androidx.fragment.app.Fragment;
 
 import com.example.mad_project.R;
 
-public class HomeSellerFragment extends Fragment {
-    public HomeSellerFragment() {
-        super(R.layout.fragment_seller_home);
+public class SellerAddFragment extends Fragment {
+    public SellerAddFragment() {
+        super(R.layout.fragment_seller_add);
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_seller_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_seller_add, container, false);
         return view;
     }
 }

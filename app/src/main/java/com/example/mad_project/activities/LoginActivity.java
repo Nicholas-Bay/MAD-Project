@@ -6,19 +6,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.mad_project.R;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.safetynet.SafetyNet;
-
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -31,7 +26,6 @@ public class LoginActivity extends AppCompatActivity {
     public String TAG = "Login Activity";
     public String userResponseToken;
     private CheckBox captcha;
-    public Button showhide;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,14 +33,14 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         captcha = findViewById(R.id.captcha_btn);
-        captcha.setChecked(true);//for now
+        captcha.setChecked(true); // change to `captcha.setChecked(false) when submission`
     }
     public void onLoginBuyer(View v) {
         if (captcha.isChecked()) startActivity((new Intent(LoginActivity.this, MainPageBuyerActivity.class)));
         else Toast.makeText(LoginActivity.this, "bot alert\npls complete ur captcha", Toast.LENGTH_SHORT).show();
     }
     public void onLoginSeller(View v) {
-        if (captcha.isChecked())startActivity((new Intent(LoginActivity.this, MainPageSellerActivity.class)));
+        if (captcha.isChecked()) startActivity((new Intent(LoginActivity.this, MainPageSellerActivity.class)));
         else Toast.makeText(LoginActivity.this, "bot alert\npls complete ur captcha", Toast.LENGTH_SHORT).show();
     }
     public void onRegisterSeller(View v) {

@@ -9,8 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.example.mad_project.R;
 
-public class CalendarBuyerFragment extends Fragment {
-    public CalendarBuyerFragment() {
+public class BuyerCalendarFragment extends Fragment {
+    public BuyerCalendarFragment() {
         super(R.layout.fragment_buyer_calendar);
     }
     @Override

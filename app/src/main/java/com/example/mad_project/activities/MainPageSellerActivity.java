@@ -1,17 +1,14 @@
 package com.example.mad_project.activities;
 import android.os.Bundle;
 import android.util.Log;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-
 import com.example.mad_project.R;
-import com.example.mad_project.fragments.AddSellerFragment;
-import com.example.mad_project.fragments.HomeSellerFragment;
-import com.example.mad_project.fragments.MeSellerFragment;
-import com.example.mad_project.fragments.ReputationSellerFragment;
-
+import com.example.mad_project.fragments.SellerAddFragment;
+import com.example.mad_project.fragments.SellerHomeFragment;
+import com.example.mad_project.fragments.SellerMeFragment;
+import com.example.mad_project.fragments.SellerReputationFragment;
 import nl.joery.animatedbottombar.AnimatedBottomBar;
 
 public class MainPageSellerActivity extends AppCompatActivity {
@@ -27,23 +24,23 @@ public class MainPageSellerActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             animatedBottomBar.selectTabById(R.id.home_seller, true);
             fragmentManager = getSupportFragmentManager();
-            HomeSellerFragment homeSellerFragment = new HomeSellerFragment();
-            fragmentManager.beginTransaction().replace(R.id.fragment_seller_container, homeSellerFragment).commit();
+            SellerHomeFragment sellerHomeFragment = new SellerHomeFragment();
+            fragmentManager.beginTransaction().replace(R.id.fragment_seller_container, sellerHomeFragment).commit();
         }
         animatedBottomBar.setOnTabSelectListener((lastIndex, lastTab, newIndex, newTab) -> {
             Fragment fragment = null;
             switch (newTab.getId()) {
                 case R.id.home_seller:
-                    fragment = new HomeSellerFragment();
+                    fragment = new SellerHomeFragment();
                     break;
                 case R.id.reputation_seller:
-                    fragment = new ReputationSellerFragment();
+                    fragment = new SellerReputationFragment();
                     break;
                 case R.id.add_seller:
-                    fragment = new AddSellerFragment();
+                    fragment = new SellerAddFragment();
                     break;
                 case R.id.me_seller:
-                    fragment = new MeSellerFragment();
+                    fragment = new SellerMeFragment();
                     break;
             }
             if (fragment != null) {

@@ -1,50 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DesignSurface">
-    <option name="filePathToZoomLevelMap">
-      <map>
-        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/drawable-v24/ic_shoppee_calender_arrow.xml" value="0.23796296296296296" />
-        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/drawable/ic_image_calendar.xml" value="0.23796296296296296" />
-        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/drawable/ic_image_home.xml" value="0.14947916666666666" />
-        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/drawable/ic_image_person.xml" value="0.14947916666666666" />
-        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/drawable/ic_launcher_background.xml" value="0.14947916666666666" />
-        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/drawable/round_button.xml" value="0.24259259259259258" />
-        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/activity_mainpage.xml" value="0.12613981762917933" />
-        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/activity_register.xml" value="0.12613981762917933" />
-        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/activity_splashscreen.xml" value="0.12613981762917933" />
-        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/fragment_calendar.xml" value="0.264" />
-        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/fragment_home.xml" value="0.12613981762917933" />
-        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/mad-project/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2755208333333333" />
-        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/mad-project/app/src/main/res/drawable/ic_home_image.xml" value="0.2755208333333333" />
-        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/mad-project/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2755208333333333" />
-        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/mad-project/app/src/main/res/drawable/ic_me_image.xml" value="0.2755208333333333" />
-        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/mad-project/app/src/main/res/drawable/ic_reputationbar_image.xml" value="0.2755208333333333" />
-        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/mad-project/app/src/main/res/layout/activity_home.xml" value="0.17300724637681159" />
-        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/mad-project/app/src/main/res/layout/activity_login.xml" value="0.17300724637681159" />
-        <entry key="app/src/main/res/drawable/ic_calendar_image.xml" value="0.2984375" />
-        <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.2984375" />
-        <entry key="app/src/main/res/drawable/ic_image_bar.xml" value="0.25416666666666665" />
-        <entry key="app/src/main/res/layout/activity_buyer_mainpage.xml" value="0.28229166666666666" />
-        <entry key="app/src/main/res/layout/activity_home.xml" value="0.24259259259259258" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.23295775933811388" />
-        <entry key="app/src/main/res/layout/activity_register.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/activity_splashscreen.xml" value="0.24259259259259258" />
-        <entry key="app/src/main/res/layout/fragment_buyer_calendar.xml" value="0.28229166666666666" />
-        <entry key="app/src/main/res/layout/fragment_buyer_home.xml" value="0.28229166666666666" />
-        <entry key="app/src/main/res/layout/fragment_buyer_me.xml" value="0.28229166666666666" />
-        <entry key="app/src/main/res/layout/fragment_buyer_reputation.xml" value="0.28229166666666666" />
-        <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.24259259259259258" />
-        <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.25462962962962965" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3078967358790415" />
-        <entry key="app/src/main/res/layout/fragment_me.xml" value="0.25462962962962965" />
-        <entry key="app/src/main/res/layout/fragment_reputation.xml" value="0.24259259259259258" />
-        <entry key="app/src/main/res/layout/fragment_seller_add.xml" value="0.28229166666666666" />
-        <entry key="app/src/main/res/layout/fragment_seller_reputation.xml" value="0.28229166666666666" />
-        <entry key="app/src/main/res/menu/bottom_nav_bar_buyer.xml" value="0.28229166666666666" />
-        <entry key="app/src/main/res/menu/bottom_nav_bar_seller.xml" value="0.28229166666666666" />
-        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.28229166666666666" />
-      </map>
-    </option>
+    <option name="filePathToZoomLevelMap" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />

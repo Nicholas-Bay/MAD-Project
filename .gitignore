@@ -27,3 +27,4 @@ captures/
 .externalNativeBuild
 .cxx
 .idea/.name
+.idea/misc.xml

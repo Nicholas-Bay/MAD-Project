@@ -13,6 +13,10 @@
 > 1. Copy absolute path where you want to clone code in
 > 2. In terminal, ```cd PATH & git clone https://github.com/Nicholas-Bay/MAD-Project.git```
 >
+> If you want to pull code from github
+> - Click on the blue tick at top-right ![git](screenshots/git.png) **OR**
+> - delete local code and repeat step as if you lost your code
+>
 > If you want to upload file to github
 > 1. Copy absolute path of file
 > 2. In terminal, ```git add PATH & git commit -m "MESSAGE" & git push```

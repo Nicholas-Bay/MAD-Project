@@ -24,15 +24,24 @@
         <entry key="app/src/main/res/drawable/ic_calendar_image.xml" value="0.2984375" />
         <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.2984375" />
         <entry key="app/src/main/res/drawable/ic_image_bar.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/layout/activity_buyer_mainpage.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.24259259259259258" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.33234271874053894" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.23295775933811388" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_splashscreen.xml" value="0.24259259259259258" />
+        <entry key="app/src/main/res/layout/fragment_buyer_calendar.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/fragment_buyer_home.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/fragment_buyer_me.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/fragment_buyer_reputation.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.24259259259259258" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.25462962962962965" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3078967358790415" />
         <entry key="app/src/main/res/layout/fragment_me.xml" value="0.25462962962962965" />
         <entry key="app/src/main/res/layout/fragment_reputation.xml" value="0.24259259259259258" />
+        <entry key="app/src/main/res/layout/fragment_seller_add.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/fragment_seller_reputation.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/menu/bottom_nav_bar_buyer.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/menu/bottom_nav_bar_seller.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.28229166666666666" />
       </map>
     </option>

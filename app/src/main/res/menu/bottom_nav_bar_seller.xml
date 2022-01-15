@@ -14,7 +14,7 @@
     <item
         android:id="@+id/add_seller"
         android:icon="@drawable/ic_image_calendar"
-        android:title="Ad]" />
+        android:title="Add" />
     <item
         android:id="@+id/me_seller"
         android:icon="@drawable/ic_image_person"

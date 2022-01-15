@@ -1,29 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mad_project">
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="MAD Project"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mad_project">
-        <activity
-            android:name=".activities.RegisterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.MainPageBuyerActivity"
-            android:exported="false"
-            android:label="@string/title_activity_home" />
-        <activity
-            android:name=".activities.MainPageSellerActivity"
-            android:exported="false"
-            />
-
         <activity
             android:name=".activities.SplashScreenActivity"
             android:exported="true">
@@ -32,7 +18,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".activities.RegisterActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".activities.LoginActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".activities.MainPageBuyerActivity"
+            android:exported="false"
+            android:label="Home"/>
+        <activity
+            android:name=".activities.MainPageSellerActivity"
+            android:exported="false"
+            android:label="Home"/>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

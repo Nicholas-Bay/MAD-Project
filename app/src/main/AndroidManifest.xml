@@ -20,6 +20,11 @@
             android:exported="false"
             android:label="@string/title_activity_home" />
         <activity
+            android:name=".activities.MainPageSellerActivity"
+            android:exported="false"
+            />
+
+        <activity
             android:name=".activities.SplashScreenActivity"
             android:exported="true">
             <intent-filter>

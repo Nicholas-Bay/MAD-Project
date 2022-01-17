@@ -24,4 +24,3 @@
 > If you want to upload the whole code to github
 > - Click on the green tick at top-right ![git](screenshots/git.png), add a message, ```commit and push...``` **OR**
 > - In terminal, ```git add --all & git commit -m "MESSAGE" & git push```
-> test

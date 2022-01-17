@@ -38,7 +38,6 @@ public class RegisterActivity extends AppCompatActivity {
         button_register_buyer.setOnClickListener(v -> {
             rootNode = FirebaseDatabase.getInstance();
             reference = rootNode.getReference("Users");
-            reference.setValue("First data storage");
             // get all the values
             String name = et_name.getText().toString();
             String username = et_username.getText().toString();

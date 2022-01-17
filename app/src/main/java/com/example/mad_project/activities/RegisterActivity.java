@@ -34,10 +34,10 @@ public class RegisterActivity extends AppCompatActivity {
         et_password = findViewById(R.id.register_password);
         Button button_register_buyer = findViewById(R.id.register_buyer);
         Button button_register_seller = findViewById(R.id.register_seller);
-        // save data to firebase and update firmware
+        // save Buyer data to firebase and update firmware
         button_register_buyer.setOnClickListener(v -> {
             rootNode = FirebaseDatabase.getInstance();
-            reference = rootNode.getReference("Users");
+            reference = rootNode.getReference("Buyer");
             // get all the values
             String name = et_name.getText().toString();
             String username = et_username.getText().toString();
@@ -47,7 +47,19 @@ public class RegisterActivity extends AppCompatActivity {
             UserHelperClass helperClass = new UserHelperClass(name, username, email, phoneNo, password);
             reference.child(phoneNo).setValue(helperClass);
         });
-        button_register_seller.setOnClickListener(onRegister);
+        // save Seller data to firebase and update firmware
+        button_register_seller.setOnClickListener(v -> {
+            rootNode = FirebaseDatabase.getInstance();
+            reference = rootNode.getReference("Seller");
+            // get all the values
+            String name = et_name.getText().toString();
+            String username = et_username.getText().toString();
+            String email = et_email.getText().toString();
+            String phoneNo = et_contact.getEditableText().toString();
+            String password = et_password.getEditableText().toString();
+            UserHelperClass helperClass = new UserHelperClass(name, username, email, phoneNo, password);
+            reference.child(phoneNo).setValue(helperClass);
+        });
     }
 
     public boolean checkAll(String username, String name, String contact,
@@ -75,18 +87,4 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
         }
     }
-    public View.OnClickListener onRegister = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            if (checkAll(//runs subsequent code if every data field is key in correctly
-                    et_username.getText().toString(),
-                    et_name.getText().toString(),
-                    et_contact.getText().toString(),
-                    et_email.getText().toString(),
-                    et_password.getText().toString())) {
-                Toast.makeText(RegisterActivity.this, "Successfully registered as buyer/seller", Toast.LENGTH_SHORT).show();
-                startActivity( new Intent(RegisterActivity.this, LoginActivity.class));
-            }
-        }
-    };
 }

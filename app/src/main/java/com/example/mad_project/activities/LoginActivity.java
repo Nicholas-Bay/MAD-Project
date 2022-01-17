@@ -4,15 +4,30 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.mad_project.R;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.safetynet.SafetyNet;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.DatabaseReference;
+
 import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -26,18 +41,112 @@ public class LoginActivity extends AppCompatActivity {
     public String TAG = "Login Activity";
     public String userResponseToken;
     private CheckBox captcha;
+    //hooks
+    TextInputLayout editUsername , editPassword;
+    public Button BuyerSignIn , SellerSignIn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         getSupportActionBar().hide();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         captcha = findViewById(R.id.captcha_btn);
-        captcha.setChecked(true); // change to `captcha.setChecked(false) when submission`
+        captcha.setChecked(true); // change to `captcha.setChecked(false) when submission
+        editUsername = findViewById(R.id.textinputLayout2);
+        editPassword = findViewById(R.id.textInputLayout);
+
     }
-    public void onLoginBuyer(View v) {
-        if (captcha.isChecked()) startActivity((new Intent(LoginActivity.this, MainPageBuyerActivity.class)));
-        else Toast.makeText(LoginActivity.this, "bot alert\npls complete ur captcha", Toast.LENGTH_SHORT).show();
+    private Boolean validateUsername(){
+        String val = editUsername.getEditText().getText().toString();
+        if(val.isEmpty()){
+            editUsername.setError("Username cannot be Empty");
+            return false;
+        }
+        else
+        {
+            editUsername.setError(null);
+            editUsername.setErrorEnabled(false);
+            return true;
+        }
+    }
+    private Boolean validatePassword(){
+        String val = editPassword.getEditText().getText().toString();
+        if (val.isEmpty()){
+            editPassword.setError("Password cannot be Empty");
+            return false;
+
+        }
+        else{
+            editPassword.setError(null);
+            editPassword.setErrorEnabled(false);
+            return true;
+        }
+    }
+    public void loginUser(View view ){
+        //for validating actual login info
+        if(!validateUsername() | !validatePassword())
+        {
+            return;
+        }
+        else
+        {
+            isUser();
+        }
+    }
+    private void isUser() {
+        //if (captcha.isChecked()) startActivity((new Intent(LoginActivity.this, MainPageBuyerActivity.class)));
+        //else Toast.makeText(LoginActivity.this, "bot alert\npls complete ur captcha", Toast.LENGTH_SHORT).show();
+
+        final String userEnteredUsername = editUsername.getEditText().getText().toString().trim();
+        final String userEnteredPassword = editPassword.getEditText().getText().toString().trim();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Buyer");
+
+        Query checkUser = reference.orderByChild("username").equalTo(userEnteredUsername);
+
+        checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    editUsername.setError(null);
+                    editUsername.setErrorEnabled(false);
+                    String passwordFromDB = snapshot.child(userEnteredUsername).child("password").getValue(String.class);
+                    if(passwordFromDB.equals(userEnteredPassword)){
+                        editUsername.setError(null);
+                        editUsername.setErrorEnabled(false);
+                        String usernameFromDB = snapshot.child(userEnteredUsername).child("username").getValue(String.class);
+                        String phoneNoFromDB =snapshot.child(userEnteredUsername).child("phoneNo").getValue(String.class);
+                        String emailFromDB = snapshot.child(userEnteredUsername).child("email").getValue(String.class);
+                        String nameFromDB = snapshot.child(userEnteredUsername).child("name").getValue(String.class);
+
+                        Intent intent = new Intent(getApplicationContext(),MainPageBuyerActivity.class);
+                        intent.putExtra("username",usernameFromDB);
+                        intent.putExtra("password",passwordFromDB);
+                        intent.putExtra("name",nameFromDB);
+                        intent.putExtra("email",emailFromDB);
+                        intent.putExtra("phoneNo",phoneNoFromDB);
+                        startActivity(intent);
+
+                    }
+                    else{
+                        editPassword.setError("Wrong Password");
+                        editPassword.requestFocus();
+                    }
+                }
+                else{
+                    editUsername.setError("No Such User");
+                    editUsername.requestFocus();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) { }
+        });
+
+
     }
     public void onLoginSeller(View v) {
         if (captcha.isChecked()) startActivity((new Intent(LoginActivity.this, MainPageSellerActivity.class)));

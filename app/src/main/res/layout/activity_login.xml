@@ -45,7 +45,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginEnd="39dp"
         android:fontFamily="@font/antic"
-        android:onClick="onLoginBuyer"
+        android:onClick="loginUser"
         android:text="Login as Buyer"
         android:theme="@style/Theme.Mad_project.shoppeeBtn"
         app:layout_constraintEnd_toStartOf="@+id/login_seller"
@@ -109,10 +109,11 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="1dp"
         app:layout_constraintBottom_toTopOf="@+id/captcha_btn"
         app:layout_constraintEnd_toEndOf="parent"
@@ -120,8 +121,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textinputLayout2"
         app:passwordToggleEnabled="true"
-        app:passwordToggleTint="@color/purple_200"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        app:passwordToggleTint="@color/purple_200">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputpassword"

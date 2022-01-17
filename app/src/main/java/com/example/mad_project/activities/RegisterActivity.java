@@ -45,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
             String phoneNo = et_contact.getEditableText().toString();
             String password = et_password.getEditableText().toString();
             UserHelperClass helperClass = new UserHelperClass(name, username, email, phoneNo, password);
-            reference.child(phoneNo).setValue(helperClass);
+            reference.child(username).setValue(helperClass);
         });
         // save Seller data to firebase and update firmware
         button_register_seller.setOnClickListener(v -> {
@@ -57,8 +57,11 @@ public class RegisterActivity extends AppCompatActivity {
             String email = et_email.getText().toString();
             String phoneNo = et_contact.getEditableText().toString();
             String password = et_password.getEditableText().toString();
-            UserHelperClass helperClass = new UserHelperClass(name, username, email, phoneNo, password);
-            reference.child(phoneNo).setValue(helperClass);
+            UserHelperClass helperClass = null;
+            if (checkAll(username, name, phoneNo, email, password)) {
+                helperClass = new UserHelperClass(name, username, email, phoneNo, password);
+            }
+            reference.child(username).setValue(helperClass);
         });
     }
 

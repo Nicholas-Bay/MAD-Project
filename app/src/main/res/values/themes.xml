@@ -16,7 +16,7 @@
 
     </style>
     <!-- Child of theme mad -->
-
+    <!--theme for calender-->
     <style name='Theme.Mad_project.shoppeeBtn'  parent="Theme.Mad_project">
         <item name="android:backgroundTint">@color/shoppee_color</item>
     </style>

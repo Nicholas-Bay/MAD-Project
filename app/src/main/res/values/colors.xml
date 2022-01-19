@@ -10,4 +10,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="shoppee_color">#EE4D30</color>
     <color name="red"> #FF0000</color>
+    <color name="rating_color">#FFEB3B</color>
 </resources>

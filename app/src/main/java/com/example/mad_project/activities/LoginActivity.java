@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
             return true;
         }
     }
-    public void loginUser(View view ){
+    public void loginBuyer(View view ){
         //for validating actual login info
         if(!validateUsername() | !validatePassword())
         {
@@ -92,10 +92,69 @@ public class LoginActivity extends AppCompatActivity {
         }
         else
         {
-            isUser();
+            isBuyer();
         }
     }
-    private void isUser() {
+    public void LoginSeller(View view ){
+        //for validating actual login info
+        if(!validateUsername() | !validatePassword())
+        {
+            return;
+        }
+        else
+        {
+            isSeller();
+        }
+    }
+    private void isSeller(){
+        final String userEnteredUsername = editUsername.getEditText().getText().toString().trim();
+        final String userEnteredPassword = editPassword.getEditText().getText().toString().trim();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Seller");
+
+        Query checkUser = reference.orderByChild("username").equalTo(userEnteredUsername);
+        checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    editUsername.setError(null);
+                    editUsername.setErrorEnabled(false);
+                    String passwordFromDB = snapshot.child(userEnteredUsername).child("password").getValue(String.class);
+                    if(passwordFromDB.equals(userEnteredPassword)){
+                        editUsername.setError(null);
+                        editUsername.setErrorEnabled(false);
+                        String usernameFromDB = snapshot.child(userEnteredUsername).child("username").getValue(String.class);
+                        String phoneNoFromDB =snapshot.child(userEnteredUsername).child("phoneNo").getValue(String.class);
+                        String emailFromDB = snapshot.child(userEnteredUsername).child("email").getValue(String.class);
+                        String nameFromDB = snapshot.child(userEnteredUsername).child("name").getValue(String.class);
+
+                        Intent intent = new Intent(getApplicationContext(),MainPageSellerActivity.class);
+                        intent.putExtra("username",usernameFromDB);
+                        intent.putExtra("password",passwordFromDB);
+                        intent.putExtra("name",nameFromDB);
+                        intent.putExtra("email",emailFromDB);
+                        intent.putExtra("phoneNo",phoneNoFromDB);
+                        startActivity(intent);
+
+                    }
+                    else{
+                        editPassword.setError("Wrong Password");
+                        editPassword.requestFocus();
+                    }
+                }
+                else{
+                    editUsername.setError("No Such User");
+                    editUsername.requestFocus();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) { }
+        });
+
+    }
+    private void isBuyer() {
         //if (captcha.isChecked()) startActivity((new Intent(LoginActivity.this, MainPageBuyerActivity.class)));
         //else Toast.makeText(LoginActivity.this, "bot alert\npls complete ur captcha", Toast.LENGTH_SHORT).show();
 
@@ -147,10 +206,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-    }
-    public void onLoginSeller(View v) {
-        if (captcha.isChecked()) startActivity((new Intent(LoginActivity.this, MainPageSellerActivity.class)));
-        else Toast.makeText(LoginActivity.this, "bot alert\npls complete ur captcha", Toast.LENGTH_SHORT).show();
     }
     public void onRegisterSeller(View v) {
         startActivity((new Intent(LoginActivity.this, RegisterActivity.class)));

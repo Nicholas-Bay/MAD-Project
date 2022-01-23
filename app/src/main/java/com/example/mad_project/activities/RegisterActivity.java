@@ -46,6 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
             String password = et_password.getEditableText().toString();
             UserHelperClass helperClass = new UserHelperClass(name, username, email, phoneNo, password);
             reference.child(username).setValue(helperClass);
+            Toast.makeText(RegisterActivity.this,"Successfully Registered as Buyer",Toast.LENGTH_LONG).show();
         });
         // save Seller data to firebase and update firmware
         button_register_seller.setOnClickListener(v -> {
@@ -62,6 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
                 helperClass = new UserHelperClass(name, username, email, phoneNo, password);
             }
             reference.child(username).setValue(helperClass);
+            Toast.makeText(RegisterActivity.this,"Successfully Registered As Seller",Toast.LENGTH_LONG).show();
         });
     }
 

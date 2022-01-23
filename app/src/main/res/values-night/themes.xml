@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Mad_project" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorPrimary">@color/black</item>
         <item name="colorPrimaryVariant">@color/black</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
@@ -13,4 +13,10 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <!-- Child of theme mad -->
+    <style name="Theme.Mad_project.seller_me_btn" parent="Theme.Mad_project">
+        <item name="backgroundColor">#000000</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
 </resources>

@@ -16,6 +16,17 @@
 
     </style>
     <!-- Child of theme mad -->
+    <style name="Theme.Mad_project.seller_me_btn" parent="Theme.Mad_project">
+        <item name="backgroundColor">#BFBFBF</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="Theme.Mad_project.seller_me_btn.btnAnimation" parent="Theme.Mad_project.seller_me_btn">
+        <item name="android:animateOnClick">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:longClickable">true</item>
+        <item name="android:state_pressed">true</item>
+        <item name="android:state_focused">true</item>
+    </style>
     <!--theme for calender-->
     <style name='Theme.Mad_project.shoppeeBtn'  parent="Theme.Mad_project">
         <item name="android:backgroundTint">@color/shoppee_color</item>

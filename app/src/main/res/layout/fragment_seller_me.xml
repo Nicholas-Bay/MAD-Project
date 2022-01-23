@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -39,12 +40,170 @@
         />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/seller_me_points"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
         android:layout_below="@id/ratingBar"
         android:layout_centerHorizontal="true"
-        android:textSize="50sp"/>
+        android:layout_marginTop="-6dp"
+        android:clickable="false"
+        android:text="10000"
+        android:textSize="50sp"
+        android:translationX="-25dp" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="95dp"
+        android:layout_height="92dp"
+        android:layout_below="@+id/ratingBar"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="-26dp"
+        android:layout_marginTop="-19dp"
+        android:layout_marginEnd="91dp"
+        android:layout_marginBottom="-7dp"
+        android:layout_toEndOf="@+id/seller_me_points"
+        android:src="@drawable/points_icon" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@id/seller_me_points"
+        android:paddingTop="10dp"
+        android:theme="@style/Theme.Mad_project.seller_me_btn"
+        >
+
+
+        <LinearLayout
+            android:id="@+id/seller_me_redemption1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:theme="@style/Theme.Mad_project.seller_me_btn.btnAnimation"
+            >
+
+            <TextView
+                android:id="@+id/seller_me_text1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:text="FREE\nBUMPS"
+                android:textSize="25dp"
+
+                />
+
+            <TextView
+                android:id="@+id/seller_me_points1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="1000"
+                android:textSize="50dp"
+                android:textAlignment="gravity"
+                android:layout_gravity="center_vertical"/>
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:src="@drawable/points_icon"
+                android:textAlignment="gravity"
+                android:layout_gravity="center_vertical"
+                />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+        <LinearLayout
+            android:id="@+id/seller_me_redemption2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/seller_me_text2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="FREE\nGIFT BAG"
+                android:textSize="25dp"
+                android:textAlignment="gravity"
+                android:layout_gravity="center_vertical"
+
+                />
+
+            <TextView
+                android:id="@+id/seller_me_points2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="1000"
+                android:textSize="50dp"
+                android:textAlignment="gravity"
+                android:layout_gravity="center_vertical"
+
+                />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:src="@drawable/points_icon"
+                android:textAlignment="gravity"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+
+        <LinearLayout
+            android:id="@+id/seller_me_redemption3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/seller_me_text3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="SERVICE\nTEXT OFF"
+                android:textSize="25dp"
+                android:textAlignment="gravity"
+                android:layout_gravity="center_vertical"
+                />
+
+            <TextView
+                android:id="@+id/seller_me_points3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="1000"
+                android:textSize="50dp"
+                android:textAlignment="gravity"
+                android:layout_gravity="center_vertical"/>
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:src="@drawable/points_icon"
+                android:textAlignment="gravity"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+    </LinearLayout>
 
 </RelativeLayout>

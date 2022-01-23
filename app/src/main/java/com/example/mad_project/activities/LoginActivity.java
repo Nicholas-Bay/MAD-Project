@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         captcha = findViewById(R.id.captcha_btn);
-        captcha.setChecked(true); // change to `captcha.setChecked(false) when submission
+        captcha.setChecked(false); // change to `captcha.setChecked(false) when submission
         editUsername = findViewById(R.id.textinputLayout2);
         editPassword = findViewById(R.id.textInputLayout);
 
@@ -273,7 +273,7 @@ public class LoginActivity extends AppCompatActivity {
                     System.out.println("Result Object :  " + jsonObject);
                     isSuccess = jsonObject.getString("success");
                     System.out.println("obj "+isSuccess);
-                    captcha.setChecked(true);
+                    captcha.setChecked(false);
                 } catch (Exception e) {
                     Log.d("Exception: ", e.getMessage());
                     e.printStackTrace();
@@ -292,6 +292,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (s != null) {
                     switch (s) {
                         case "true":
+                            captcha.setChecked(true);
                             Toast.makeText(LoginActivity.this,"Verified", Toast.LENGTH_SHORT).show();
                             return;
                         case "socketexception":

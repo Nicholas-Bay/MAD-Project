@@ -73,7 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/antic"
-        android:onClick="onRegisterSeller"
+        android:onClick="onRegister"
         android:text="New User?/Sign Up"
         android:theme="@style/Theme.Mad_project.shoppeeBtn"
         app:layout_constraintEnd_toEndOf="parent"
@@ -141,7 +141,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/slogan"
-        app:passwordToggleEnabled="true"
         app:passwordToggleTint="@color/purple_200"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 

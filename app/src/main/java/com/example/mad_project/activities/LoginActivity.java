@@ -127,6 +127,7 @@ public class LoginActivity extends AppCompatActivity {
                         String phoneNoFromDB =snapshot.child(userEnteredUsername).child("phoneNo").getValue(String.class);
                         String emailFromDB = snapshot.child(userEnteredUsername).child("email").getValue(String.class);
                         String nameFromDB = snapshot.child(userEnteredUsername).child("name").getValue(String.class);
+                        if (captcha.isChecked()){//captcha validation
 
                         Intent intent = new Intent(getApplicationContext(),MainPageSellerActivity.class);
                         intent.putExtra("username",usernameFromDB);
@@ -134,7 +135,9 @@ public class LoginActivity extends AppCompatActivity {
                         intent.putExtra("name",nameFromDB);
                         intent.putExtra("email",emailFromDB);
                         intent.putExtra("phoneNo",phoneNoFromDB);
-                        startActivity(intent);
+                        startActivity(intent);}
+                        else Toast.makeText(LoginActivity.this, "bot alert\npls complete ur captcha", Toast.LENGTH_SHORT).show();
+
 
                     }
                     else{
@@ -155,9 +158,6 @@ public class LoginActivity extends AppCompatActivity {
 
     }
     private void isBuyer() {
-        //if (captcha.isChecked()) startActivity((new Intent(LoginActivity.this, MainPageBuyerActivity.class)));
-        //else Toast.makeText(LoginActivity.this, "bot alert\npls complete ur captcha", Toast.LENGTH_SHORT).show();
-
         final String userEnteredUsername = editUsername.getEditText().getText().toString().trim();
         final String userEnteredPassword = editPassword.getEditText().getText().toString().trim();
 
@@ -179,14 +179,16 @@ public class LoginActivity extends AppCompatActivity {
                         String phoneNoFromDB =snapshot.child(userEnteredUsername).child("phoneNo").getValue(String.class);
                         String emailFromDB = snapshot.child(userEnteredUsername).child("email").getValue(String.class);
                         String nameFromDB = snapshot.child(userEnteredUsername).child("name").getValue(String.class);
-
+                        if (captcha.isChecked()){
                         Intent intent = new Intent(getApplicationContext(),MainPageBuyerActivity.class);
                         intent.putExtra("username",usernameFromDB);
                         intent.putExtra("password",passwordFromDB);
                         intent.putExtra("name",nameFromDB);
                         intent.putExtra("email",emailFromDB);
                         intent.putExtra("phoneNo",phoneNoFromDB);
-                        startActivity(intent);
+                        startActivity(intent);}
+                        else Toast.makeText(LoginActivity.this, "bot alert\npls complete ur captcha", Toast.LENGTH_SHORT).show();
+
 
                     }
                     else{
@@ -207,9 +209,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
-    public void onRegisterSeller(View v) {
+    public void onRegister(View v) {
         startActivity((new Intent(LoginActivity.this, RegisterActivity.class)));
     }
+    //captcha stuff
     public void connect(View v) {
         captcha.setChecked(false);
         SafetyNet.getClient(this).verifyWithRecaptcha(SiteKey)
@@ -230,6 +233,7 @@ public class LoginActivity extends AppCompatActivity {
                     else Log.d(TAG, "Error: " + e.getMessage());
                 });
         }
+        //captcha stuff
     public class Check extends AsyncTask<String, Void, String> {
         ProgressDialog progressDialog;
         @Override

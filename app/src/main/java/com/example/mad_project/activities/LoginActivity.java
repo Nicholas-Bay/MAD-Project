@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         captcha = findViewById(R.id.captcha_btn);
-        captcha.setChecked(false); // change to `captcha.setChecked(false) when submission
+        captcha.setChecked(true); // change to `captcha.setChecked(false) when submission
         editUsername = findViewById(R.id.textinputLayout2);
         editPassword = findViewById(R.id.textInputLayout);
 

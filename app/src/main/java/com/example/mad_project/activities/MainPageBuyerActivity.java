@@ -1,4 +1,5 @@
 package com.example.mad_project.activities;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,10 +16,21 @@ public class MainPageBuyerActivity extends AppCompatActivity {
     private static final String TAG = MainPageBuyerActivity.class.getSimpleName();
     private AnimatedBottomBar animatedBottomBar;
     private FragmentManager fragmentManager;
+    //bundle to pass activty to fragment
+    Bundle bundle=new Bundle();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buyer_mainpage);
+        //getting data from loginActivity and storing into bundle
+        //so that we can pass bundle to the framgnets
+        Intent intent=getIntent();
+        bundle.putString("username",intent.getStringExtra("username"));
+        bundle.putString("password",intent.getStringExtra("password"));
+        bundle.putString("name",intent.getStringExtra("name"));
+        bundle.putString("email",intent.getStringExtra("email"));
+        bundle.putString("phoneNo",intent.getStringExtra("phoneNo"));
+
         getSupportActionBar().hide();
         animatedBottomBar = findViewById(R.id.animatedBuyerBottomBar);
         if (savedInstanceState == null) {
@@ -41,6 +53,7 @@ public class MainPageBuyerActivity extends AppCompatActivity {
                     break;
                 case R.id.me_buyer:
                     fragment = new BuyerMeFragment();
+                    fragment.setArguments(bundle);
                     break;
             }
             if (fragment != null) {

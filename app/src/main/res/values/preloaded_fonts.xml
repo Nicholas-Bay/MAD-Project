@@ -2,7 +2,10 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/allerta_stencil</item>
+        <item>@font/andika</item>
         <item>@font/antic</item>
+        <item>@font/autour_one</item>
+        <item>@font/baloo_paaji</item>
         <item>@font/bungee_inline</item>
     </array>
 </resources>

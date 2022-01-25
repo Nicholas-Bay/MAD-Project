@@ -30,7 +30,7 @@ public class BuyerMeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_buyer_me, container, false);
-        //get data from mainpg buyer activity
+        //get data from mainPage buyer activity
         String username=getArguments().getString("username");
         String password=getArguments().getString("password");
         String name=getArguments().getString("name");

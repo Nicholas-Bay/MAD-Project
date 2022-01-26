@@ -53,13 +53,13 @@ public class BuyerMeFragment extends Fragment {
         return view;
     }
 
-    private void showAllUserData(String username,String pwd,String name,String email,String phoneNo){
+    private void showAllUserData(String username,String password,String name,String email,String phoneNo){
         FullName.setText(name);
         displayUser.setText(username);
         ProfileName.getEditText().setText(name);
         ProfileEmail.getEditText().setText(email);
         ProfilePhone.getEditText().setText(phoneNo);
-        ProfilePassword.getEditText().setText(pwd);
+        ProfilePassword.getEditText().setText(password);
     }
     private View.OnClickListener onUpdate=new View.OnClickListener() {
         @Override
@@ -75,7 +75,7 @@ public class BuyerMeFragment extends Fragment {
 //                Map<String,Object>postValues=post.toMap();
 //                Map<String,Object>childUpdates=new HashMap<>();
 //                childUpdates.put("/"+username + "/", postValues);
-//                //overwriting prevoious data
+//                //overwriting previous data
             reference.child(username).child("name").setValue(new_name);
             reference.child(username).child("email").setValue(new_email);
             reference.child(username).child("phoneNo").setValue(new_phoneNo);

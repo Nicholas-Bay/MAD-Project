@@ -16,10 +16,13 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/activity_splashscreen.xml" value="0.1203125" />
-        <entry key="app/src/main/res/layout/fragment_buyer_home.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/featured_design.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fragment_buyer_calendar.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/fragment_buyer_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_buyer_me.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_buyer_reputation.xml" value="0.22777777777777777" />
         <entry key="app/src/main/res/layout/fragment_seller_me.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/menu/bottom_nav_bar_buyer.xml" value="0.23802083333333332" />
       </map>
     </option>
   </component>

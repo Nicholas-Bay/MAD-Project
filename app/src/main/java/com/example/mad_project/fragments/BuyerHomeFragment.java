@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 
 import com.example.mad_project.R;
+import com.example.mad_project.activities.CategoriesAdapter;
+import com.example.mad_project.activities.CategoriesHelperClass;
 import com.example.mad_project.activities.FeaturedAdapter;
 import com.example.mad_project.activities.FeaturedHelperClass;
 import com.example.mad_project.activities.mostViewedAdapter;
@@ -21,6 +23,7 @@ import java.util.ArrayList;
 public class BuyerHomeFragment extends Fragment {
     RecyclerView featuredRecycler;
     RecyclerView mostviewedRecycler;
+    RecyclerView categoriesRecycler;
     RecyclerView.Adapter adapter;
     public BuyerHomeFragment() {
         super(R.layout.fragment_buyer_home);
@@ -32,9 +35,11 @@ public class BuyerHomeFragment extends Fragment {
         //hooks
         featuredRecycler = view.findViewById(R.id.featured_recycler);
         mostviewedRecycler = view.findViewById(R.id.mostviewed_recycler);
+        categoriesRecycler = view.findViewById(R.id.categories_recycler);
 
         featuredRecycler();
         mostViewedRecycler();
+        categoriesRecycler();
         return view;
     }
 
@@ -73,5 +78,17 @@ public class BuyerHomeFragment extends Fragment {
 
         adapter = new mostViewedAdapter(mostViewedDesigns);
         mostviewedRecycler.setAdapter(adapter);
+    }
+
+    private void categoriesRecycler(){
+        categoriesRecycler.setHasFixedSize(true);
+        categoriesRecycler.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
+        ArrayList<CategoriesHelperClass> categoriesDesign = new ArrayList<>();
+
+        categoriesDesign.add(new CategoriesHelperClass(R.drawable.accesorieswatches,"Accessories"));
+        categoriesDesign.add(new CategoriesHelperClass(R.drawable.phonescat,"Electronic devices"));
+
+        adapter = new CategoriesAdapter(categoriesDesign);
+        categoriesRecycler.setAdapter(adapter);
     }
 }

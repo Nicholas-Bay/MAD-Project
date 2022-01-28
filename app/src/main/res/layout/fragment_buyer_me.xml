@@ -199,8 +199,8 @@
         android:layout_marginBottom="10dp">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_baseline_verified_user_24"
+                android:layout_height="wrap_content"
                 android:drawablePadding="10dp">
             </com.google.android.material.textfield.TextInputEditText>
 

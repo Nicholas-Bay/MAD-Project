@@ -19,13 +19,27 @@
         </com.google.android.material.textfield.TextInputEditText>
 
 </com.google.android.material.textfield.TextInputLayout>
-
+    <!--categories-->
     <Spinner
+        android:id="@+id/product_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/product_name"
+        android:backgroundTint="@color/white"></Spinner>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Quantity"
+        android:id="@+id/product_quantity"
+        android:layout_below="@+id/product_category"
         >
-    </Spinner>
 
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawablePadding="10dp">
+
+    </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
 
 </RelativeLayout>

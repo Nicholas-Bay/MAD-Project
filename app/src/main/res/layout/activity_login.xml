@@ -9,9 +9,9 @@
 
     <ImageView
         android:id="@+id/shopee_logo"
-        android:layout_width="115dp"
-        android:layout_height="123dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="150dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,18 +22,15 @@
         android:id="@+id/captcha_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="123dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="153dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/round_button"
         android:fontFamily="@font/antic"
         android:onClick="connect"
-        android:padding="10dp"
+        android:padding="15dp"
         android:text="I'm not a Bot"
         android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
@@ -41,14 +38,12 @@
         android:id="@+id/login_buyer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="39dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/antic"
         android:onClick="loginBuyer"
         android:text="Login as Buyer"
         android:theme="@style/Theme.Mad_project.shoppeeBtn"
-        app:layout_constraintEnd_toStartOf="@+id/login_seller"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/captcha_btn" />
 
@@ -56,50 +51,45 @@
         android:id="@+id/login_seller"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="16dp"
         android:fontFamily="@font/antic"
         android:onClick="LoginSeller"
         android:text="Login as Seller"
         android:theme="@style/Theme.Mad_project.shoppeeBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/login_buyer"
-        app:layout_constraintTop_toBottomOf="@+id/captcha_btn" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_buyer" />
 
     <Button
         android:id="@+id/register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:fontFamily="@font/antic"
         android:onClick="onRegister"
         android:text="New User?/Sign Up"
         android:theme="@style/Theme.Mad_project.shoppeeBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.468"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_seller" />
 
     <TextView
         android:id="@+id/Welcome"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_marginStart="3dp"
         android:fontFamily="@font/bungee_inline"
+        android:paddingLeft="90dp"
         android:text="Hello there , Welcome back"
+        android:textColor="#000000"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shopee_logo"
-        android:textColor="#000"/>
+        app:layout_constraintTop_toBottomOf="@+id/shopee_logo" />
 
     <TextView
         android:id="@+id/slogan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginEnd="215dp"
+        android:layout_marginEnd="100dp"
         android:fontFamily="@font/allerta_stencil"
         android:text="Sign in to continue!"
         android:textSize="20sp"
@@ -110,11 +100,11 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="409dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="1dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="50dp"
         app:layout_constraintBottom_toTopOf="@+id/captcha_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -124,8 +114,7 @@
         app:passwordToggleTint="@color/purple_200">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/inputpassword"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:hint="Password"
             android:inputType="textPassword" />
@@ -133,20 +122,19 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textinputLayout2"
-        android:layout_width="409dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="1dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/slogan"
-        app:passwordToggleTint="@color/purple_200"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        app:passwordToggleTint="@color/purple_200">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/inputusername"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:hint="Username" />
     </com.google.android.material.textfield.TextInputLayout>

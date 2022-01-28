@@ -273,6 +273,7 @@
                 </RelativeLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/mostviewed_recycler"
                     android:layout_width="match_parent"
                     android:layout_height="100dp" />
 
@@ -308,6 +309,7 @@
                 </RelativeLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/categories_recycler"
                     android:layout_width="match_parent"
                     android:layout_height="100dp" />
 

@@ -1,4 +1,5 @@
 package com.example.mad_project.fragments;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,11 +13,14 @@ import android.view.WindowManager;
 import com.example.mad_project.R;
 import com.example.mad_project.activities.FeaturedAdapter;
 import com.example.mad_project.activities.FeaturedHelperClass;
+import com.example.mad_project.activities.mostViewedAdapter;
+import com.example.mad_project.activities.mostViewedHelperClass;
 
 import java.util.ArrayList;
 
 public class BuyerHomeFragment extends Fragment {
     RecyclerView featuredRecycler;
+    RecyclerView mostviewedRecycler;
     RecyclerView.Adapter adapter;
     public BuyerHomeFragment() {
         super(R.layout.fragment_buyer_home);
@@ -27,8 +31,10 @@ public class BuyerHomeFragment extends Fragment {
         //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         //hooks
         featuredRecycler = view.findViewById(R.id.featured_recycler);
+        mostviewedRecycler = view.findViewById(R.id.mostviewed_recycler);
 
         featuredRecycler();
+        mostViewedRecycler();
         return view;
     }
 
@@ -44,6 +50,28 @@ public class BuyerHomeFragment extends Fragment {
 
         adapter = new FeaturedAdapter(featuredDesigns);
         featuredRecycler.setAdapter(adapter);
+
         //featuredRecycler.smoothScrollToPosition(adapter.getItemCount() - 1);
+
+        GradientDrawable gradient1 = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, new int[]{0xffeff400, 0xffaff600});
+    }
+
+    private void mostViewedRecycler(){
+        mostviewedRecycler.setHasFixedSize(true);
+        mostviewedRecycler.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
+        ArrayList<mostViewedHelperClass> mostViewedDesigns = new ArrayList<>();
+
+        mostViewedDesigns.add(new mostViewedHelperClass(R.drawable.iphone,"Iphone 13 Pro Max","One of the Top Phones"));
+        mostViewedDesigns.add(new mostViewedHelperClass(R.drawable.applewatch,"Apple Watch Series 7","One of the Best Watches"));
+        mostViewedDesigns.add(new mostViewedHelperClass(R.drawable.asus,"Asus Zenbook","One of the Top Laptops"));
+        mostViewedDesigns.add(new mostViewedHelperClass(R.drawable.s21,"Samsung S21 Ultra","Top Phones of the year "));
+        mostViewedDesigns.add(new mostViewedHelperClass(R.drawable.nicholas,"Human Slave","Can Programme For you :)"));
+
+
+
+
+
+        adapter = new mostViewedAdapter(mostViewedDesigns);
+        mostviewedRecycler.setAdapter(adapter);
     }
 }

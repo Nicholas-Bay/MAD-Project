@@ -6,13 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.example.mad_project.R;
 
-public class BuyerReputationFragment extends Fragment {
-    public BuyerReputationFragment() {
-        super(R.layout.fragment_buyer_reputation);
+public class BuyerProductFragment extends Fragment {
+    public BuyerProductFragment() {
+        super(R.layout.fragment_buyer_product);
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_buyer_reputation, container, false);
+        View view = inflater.inflate(R.layout.fragment_buyer_product, container, false);
         return view;
     }
 }

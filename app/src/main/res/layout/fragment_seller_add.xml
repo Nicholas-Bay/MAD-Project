@@ -5,11 +5,27 @@
     android:layout_height="match_parent"
     android:background="@color/black"
     tools:context=".fragments.SellerAddFragment">
-    <TextView
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Add fragment(seller)"
-        android:textColor="#ffffff"
-        android:textSize="26sp" />
+        android:hint="product"
+        android:id="@+id/product_name"
+        android:inputType="textPassword"
+        android:layout_marginBottom="10dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="10dp">
+        </com.google.android.material.textfield.TextInputEditText>
+
+</com.google.android.material.textfield.TextInputLayout>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/product_name"
+        >
+    </Spinner>
+
+
 </RelativeLayout>

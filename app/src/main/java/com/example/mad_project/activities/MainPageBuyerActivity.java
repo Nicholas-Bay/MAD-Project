@@ -9,7 +9,7 @@ import com.example.mad_project.R;
 import com.example.mad_project.fragments.BuyerCalendarFragment;
 import com.example.mad_project.fragments.BuyerHomeFragment;
 import com.example.mad_project.fragments.BuyerMeFragment;
-import com.example.mad_project.fragments.BuyerReputationFragment;
+import com.example.mad_project.fragments.BuyerProductFragment;
 import nl.joery.animatedbottombar.AnimatedBottomBar;
 
 public class MainPageBuyerActivity extends AppCompatActivity {
@@ -46,7 +46,7 @@ public class MainPageBuyerActivity extends AppCompatActivity {
                     fragment = new BuyerHomeFragment();
                     break;
                 case R.id.reputation_buyer:
-                    fragment = new BuyerReputationFragment();
+                    fragment = new BuyerProductFragment();
                     break;
                 case R.id.calendar_buyer:
                     fragment = new BuyerCalendarFragment();

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="category">
+        <item>Please Select A Category</item>
+        <item>Accessories</item>
+        <item>Electronic Devices</item>
+    </string-array>
+</resources>

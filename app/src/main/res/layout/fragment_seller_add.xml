@@ -3,39 +3,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
     tools:context=".fragments.SellerAddFragment">
-    <com.google.android.material.textfield.TextInputLayout
+
+    <TextView
+        android:id="@+id/seller_add_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="product"
+        android:background="@color/shoppee_color"
+        android:backgroundTintMode="multiply"
+        android:padding="10dp"
+        android:paddingStart="30dp"
+        android:text="Add Product"
+        android:textSize="48dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/product_name"
-        android:inputType="textPassword"
-        android:layout_marginBottom="10dp">
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/seller_add_title"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginBottom="10dp"
+        android:hint="product"
+        >
+
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawablePadding="10dp">
-        </com.google.android.material.textfield.TextInputEditText>
+            android:drawablePadding="10dp"
+            ></com.google.android.material.textfield.TextInputEditText>
 
-</com.google.android.material.textfield.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
     <!--categories-->
     <Spinner
         android:id="@+id/product_category"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:maxLength="60"
         android:minHeight="48dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginBottom="10dp"
         android:layout_below="@+id/product_name"
         ></Spinner>
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Quantity"
         android:id="@+id/product_quantity"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginBottom="10dp"
         android:layout_below="@+id/product_category"
+        android:hint="Quantity"
         >
-
     <com.google.android.material.textfield.TextInputEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,5 +65,30 @@
 
     </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
+
+    <RelativeLayout
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/product_quantity"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginBottom="10dp"
+        >
+        <TextView
+            android:id="@+id/addImage"
+            android:layout_width="350dp"
+            android:layout_height="30dp"
+            android:text="Add Images"
+            android:textSize="20dp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/product_addPhoto"
+            android:layout_width="350dp"
+            android:layout_height="160dp"
+            android:layout_below="@id/addImage"></androidx.recyclerview.widget.RecyclerView>
+
+    </RelativeLayout>
 
 </RelativeLayout>

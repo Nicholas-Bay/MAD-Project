@@ -1,6 +1,7 @@
 package com.example.mad_project.activities;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -157,7 +158,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
-    private void isBuyer() {
+         private void isBuyer() {
         final String userEnteredUsername = editUsername.getEditText().getText().toString().trim();
         final String userEnteredPassword = editPassword.getEditText().getText().toString().trim();
 

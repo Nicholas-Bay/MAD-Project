@@ -31,6 +31,7 @@
         <entry key="app/src/main/res/layout/fragment_buyer_reputation.xml" value="0.22777777777777777" />
         <entry key="app/src/main/res/layout/fragment_seller_add.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/fragment_seller_me.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/menu/bottom_nav_bar_seller.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.13645833333333332" />
       </map>
     </option>

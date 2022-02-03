@@ -45,7 +45,7 @@ public class MainPageBuyerActivity extends AppCompatActivity {
                 case R.id.home_buyer:
                     fragment = new BuyerHomeFragment();
                     break;
-                case R.id.reputation_buyer:
+                case R.id.product_buyer:
                     fragment = new BuyerProductFragment();
                     break;
                 case R.id.calendar_buyer:

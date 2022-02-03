@@ -57,8 +57,6 @@ public class BuyerHomeFragment extends Fragment {
         featuredRecycler.setAdapter(adapter);
 
         //featuredRecycler.smoothScrollToPosition(adapter.getItemCount() - 1);
-
-        GradientDrawable gradient1 = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, new int[]{0xffeff400, 0xffaff600});
     }
 
     private void mostViewedRecycler(){
@@ -90,5 +88,6 @@ public class BuyerHomeFragment extends Fragment {
 
         adapter = new CategoriesAdapter(categoriesDesign);
         categoriesRecycler.setAdapter(adapter);
+        GradientDrawable gradient1 = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, new int[]{0xffeff400, 0xffaff600});
     }
 }

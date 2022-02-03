@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mad_project">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,30 +13,38 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mad_project">
         <activity
+            android:name=".activities.Applewatchforms"
+            android:exported="true"></activity>
+        <activity
+            android:name=".activities.Iphone13forms"
+            android:exported="true"></activity>
+        <activity
             android:name=".activities.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".activities.RegisterActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".activities.LoginActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".activities.MainPageBuyerActivity"
             android:exported="false"
-            android:label="Home"/>
+            android:label="Home" />
         <activity
             android:name=".activities.MainPageSellerActivity"
             android:exported="false"
-            android:label="Home"/>
+            android:label="Home" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
 </manifest>

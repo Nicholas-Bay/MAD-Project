@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mad_project">
+    package="com.example.mad_project" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -11,16 +11,25 @@
         android:label="MAD Project"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Mad_project">
+        android:theme="@style/Theme.Mad_project" >
+        <activity
+            android:name=".activities.Ps5forms"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Samsungforms"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Clothingforms"
+            android:exported="false" />
         <activity
             android:name=".activities.Applewatchforms"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".activities.Iphone13forms"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".activities.SplashScreenActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

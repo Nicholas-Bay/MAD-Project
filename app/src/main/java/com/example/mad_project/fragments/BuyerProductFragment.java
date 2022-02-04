@@ -2,30 +2,28 @@ package com.example.mad_project.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.mad_project.R;
 import com.example.mad_project.activities.Applewatchforms;
+import com.example.mad_project.activities.Clothingforms;
 import com.example.mad_project.activities.Iphone13forms;
 import com.example.mad_project.activities.MainPageBuyerActivity;
+import com.example.mad_project.activities.Ps5forms;
+import com.example.mad_project.activities.Samsungforms;
+
 import android.widget.Button;
 import android.widget.ImageView;
-
-import java.util.Objects;
-
-import nl.joery.animatedbottombar.AnimatedBottomBar;
 
 public class BuyerProductFragment extends Fragment {
     //back button stuff
 //    private FragmentManager fragmentManager;
 //    private AnimatedBottomBar animatedBottomBar;
     ImageView backbutton;
-    Button iphonedetails, watchdetails;
+    Button iphonedetails, watchdetails , clothingdetails , samsungdetails , ps5details;
     public BuyerProductFragment() {
         super(R.layout.fragment_buyer_product);
     }
@@ -37,6 +35,9 @@ public class BuyerProductFragment extends Fragment {
         backbutton = view.findViewById(R.id.back_product);
         iphonedetails = view.findViewById(R.id.iphone_webpage);
         watchdetails = view.findViewById(R.id.watch_webpage);
+        clothingdetails = view.findViewById(R.id.clothing_webpage);
+        samsungdetails = view.findViewById(R.id.s21_webpage);
+        ps5details = view.findViewById(R.id.ps5_webpage);
 
 
 
@@ -71,6 +72,34 @@ public class BuyerProductFragment extends Fragment {
                 startActivity(intent2);
             }
         });
+
+        clothingdetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent3 = new Intent(getActivity().getApplication(), Clothingforms.class);
+                startActivity(intent3);
+            }
+        });
+
+        samsungdetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent4 = new Intent(getActivity().getApplication(), Samsungforms.class);
+                startActivity(intent4);
+            }
+        });
+
+        ps5details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent5 = new Intent(getActivity().getApplication(), Ps5forms.class);
+                startActivity(intent5);
+            }
+        });
+
+
+
+
         return view;
     }
 }

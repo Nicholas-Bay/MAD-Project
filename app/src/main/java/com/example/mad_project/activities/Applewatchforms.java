@@ -27,8 +27,6 @@ public class Applewatchforms extends AppCompatActivity {
     }
 
     private class Callback1 extends WebViewClient {
-        public boolean shouldOverrideKeyEvent(WebView view, KeyEvent event) {
-            return true;
-        }
+        public boolean shouldOverrideKeyEvent(WebView view, KeyEvent event) { return true; }
     }
 }

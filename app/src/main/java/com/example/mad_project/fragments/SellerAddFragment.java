@@ -1,36 +1,43 @@
 package com.example.mad_project.fragments;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
+import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.mad_project.R;
-import com.example.mad_project.activities.CategoriesAdapter;
-import com.example.mad_project.activities.CategoriesHelperClass;
 import com.example.mad_project.activities.ProductAddAdapter;
 import com.example.mad_project.activities.ProductAddHelper;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-public class SellerAddFragment extends Fragment {
+
+// Use the application default credentials
+    public class SellerAddFragment extends Fragment {
     Spinner spinner;
-    TextView title;
-    Drawable background;
-    BitmapDrawable reSizedBackground;
     RecyclerView productAddRecycler;
-    RecyclerView.Adapter adapter;
+    FirebaseFirestore db;
+    //button for testing
+    Button button;
+
 
     public SellerAddFragment() {
         super(R.layout.fragment_seller_add);
@@ -47,19 +54,56 @@ public class SellerAddFragment extends Fragment {
         //recycler view settings
         productAddRecycler=view.findViewById(R.id.product_addPhoto);
         productAddRecycler();
+        //button settings
+        db=FirebaseFirestore.getInstance();
+        button=view.findViewById(R.id.product_add);
+        button.setOnClickListener(click);
 
         return view;
     }
     private void productAddRecycler(){
-        productAddRecycler.setHasFixedSize(true);
-        productAddRecycler.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
+        //default
+//        productAddRecycler.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+        //slide
+//        productAddRecycler.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
+        //side by side
+//        StaggeredGridLayoutManager lm=new StaggeredGridLayoutManager(4,StaggeredGridLayoutManager.VERTICAL);
+        GridLayoutManager lm=new GridLayoutManager(getActivity(),1,GridLayoutManager.HORIZONTAL,false);
+        productAddRecycler.setLayoutManager(lm);
         ArrayList<ProductAddHelper> productAdd = new ArrayList<>();
         productAdd.add(new ProductAddHelper(R.drawable.empty));
         productAdd.add(new ProductAddHelper(R.drawable.nicholas));
+            productAdd.add(new ProductAddHelper(R.drawable.accesorieswatches));
+        productAdd.add(new ProductAddHelper(R.drawable.accesorieswatches));
+        productAdd.add(new ProductAddHelper(R.drawable.accesorieswatches));
+        productAdd.add(new ProductAddHelper(R.drawable.accesorieswatches));
         productAdd.add(new ProductAddHelper(R.drawable.accesorieswatches));
 
-
-        adapter = new ProductAddAdapter(productAdd);
+        RecyclerView.Adapter adapter = new ProductAddAdapter(productAdd);
+        productAddRecycler.setItemAnimator(new DefaultItemAnimator());
         productAddRecycler.setAdapter(adapter);
     }
+    public View.OnClickListener click=new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Map<String,Object>something=new HashMap<>();
+            something.put("1",1);
+            something.put("2",2);
+            db.collection("user")
+                    .add(something)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getActivity(), "fail", Toast.LENGTH_SHORT).show();
+
+                }
+            });
+        }
+    };
+
 }

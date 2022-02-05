@@ -1,12 +1,10 @@
 package com.example.mad_project.activities;
 
-import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,6 +33,7 @@ public class ProductAddAdapter extends RecyclerView.Adapter<ProductAddAdapter.Pr
     public void onBindViewHolder(@NonNull ProductAddAdapter.ProductAddHolder holder, int position) {
         ProductAddHelper productAddHelper = productAdd.get(position);
         holder.image.setImageResource(productAddHelper.getImage());
+//        holder.image.setImageResource(position);
 
 
     }
@@ -44,15 +43,15 @@ public class ProductAddAdapter extends RecyclerView.Adapter<ProductAddAdapter.Pr
         return productAdd.size();
     }
 
-    public static class ProductAddHolder extends RecyclerView.ViewHolder{
+    public class ProductAddHolder extends RecyclerView.ViewHolder{
 
         ImageView image;
+        Drawable drawable;
 
-        public ProductAddHolder(@NonNull View itemView) {
+        public ProductAddHolder(View itemView) {
             super(itemView);
-
-            //hooks
-            image = itemView.findViewById(R.id.imageView9);
+            image = itemView.findViewById(R.id.empty);
+            drawable=image.getDrawable();
         }
     }
 }

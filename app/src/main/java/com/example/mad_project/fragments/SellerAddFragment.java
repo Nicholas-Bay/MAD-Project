@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import com.example.mad_project.activities.ProductAddAdapter;
 import com.example.mad_project.activities.ProductAddHelper;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -32,11 +34,18 @@ import java.util.Map;
 
 // Use the application default credentials
     public class SellerAddFragment extends Fragment {
+//global parameters
+    TextInputLayout productName;
+    TextInputLayout productQuantity;
+    EditText productDescription;
     Spinner spinner;
     RecyclerView productAddRecycler;
+    //firesotre stuff
     FirebaseFirestore db;
-    //button for testing
+    //button for saving stuff
     Button button;
+    //from activity to fragment
+    String username,password,name,email,phoneNo;
 
 
     public SellerAddFragment() {
@@ -45,6 +54,16 @@ import java.util.Map;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_seller_add, container, false);
+        //data from activity
+        username=getArguments().getString("username");
+        password=getArguments().getString("password");
+        name=getArguments().getString("name");
+        email=getArguments().getString("email");
+        phoneNo=getArguments().getString("phoneNo");
+        //text input settings
+        productName=view.findViewById(R.id.product_name);
+        productQuantity=view.findViewById(R.id.product_quantity);
+        productDescription=view.findViewById(R.id.product_description);
         //spinner settings
         spinner=view.findViewById(R.id.product_category);
         ArrayAdapter<CharSequence> adapter =ArrayAdapter.createFromResource(getActivity(),R.array.category,
@@ -54,10 +73,11 @@ import java.util.Map;
         //recycler view settings
         productAddRecycler=view.findViewById(R.id.product_addPhoto);
         productAddRecycler();
-        //button settings
+        //firestore
         db=FirebaseFirestore.getInstance();
+        //button settings
         button=view.findViewById(R.id.product_add);
-        button.setOnClickListener(click);
+        button.setOnClickListener(listProduct);
 
         return view;
     }
@@ -73,7 +93,7 @@ import java.util.Map;
         ArrayList<ProductAddHelper> productAdd = new ArrayList<>();
         productAdd.add(new ProductAddHelper(R.drawable.empty));
         productAdd.add(new ProductAddHelper(R.drawable.nicholas));
-            productAdd.add(new ProductAddHelper(R.drawable.accesorieswatches));
+        productAdd.add(new ProductAddHelper(R.drawable.accesorieswatches));
         productAdd.add(new ProductAddHelper(R.drawable.accesorieswatches));
         productAdd.add(new ProductAddHelper(R.drawable.accesorieswatches));
         productAdd.add(new ProductAddHelper(R.drawable.accesorieswatches));
@@ -83,26 +103,35 @@ import java.util.Map;
         productAddRecycler.setItemAnimator(new DefaultItemAnimator());
         productAddRecycler.setAdapter(adapter);
     }
-    public View.OnClickListener click=new View.OnClickListener() {
+    public View.OnClickListener listProduct=new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            //get the infomation when button is clicked
+            String strProduct=productName.getEditText().getText().toString().trim();
+            String strQuantity=productQuantity.getEditText().getText().toString().trim();
+            String category=spinner.getSelectedItem().toString();
+            String description=productDescription.getText().toString().trim();
+            //convert imageview to bitmap
+            //saving the stuff
             Map<String,Object>something=new HashMap<>();
-            something.put("1",1);
-            something.put("2",2);
-            db.collection("user")
-                    .add(something)
-                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            something.put("product",strProduct);
+            something.put("category",category);
+            something.put("description",description);
+            something.put("quantity",Integer.parseInt(strQuantity));
+            db.collection("Seller").document(username).collection(category).document(strProduct)
+                    .set(something)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
-                        public void onSuccess(DocumentReference documentReference) {
+                        public void onSuccess(Void unused) {
                             Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
                         }
-                    }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getActivity(), "fail", Toast.LENGTH_SHORT).show();
-
-                }
-            });
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getActivity(), "Fail", Toast.LENGTH_SHORT).show();
+                        }
+                    });
         }
     };
 

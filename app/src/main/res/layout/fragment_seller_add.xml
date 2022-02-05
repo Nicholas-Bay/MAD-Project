@@ -118,10 +118,13 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="Add Product"
+        android:padding="5dp"
+        android:layout_below="@id/product_description"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="61dp"
-        android:layout_below="@id/product_description"
         android:layout_marginTop="10dp"
-        android:padding="5dp"/>
+        android:backgroundTint="@color/shoppee_color"
+        android:theme="@style/SellerAdd"
+        />
 </RelativeLayout>
 </ScrollView>

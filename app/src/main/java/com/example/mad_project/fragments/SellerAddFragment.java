@@ -1,12 +1,19 @@
 package com.example.mad_project.fragments;
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
-import android.text.Layout;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -14,38 +21,46 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.mad_project.R;
-import com.example.mad_project.activities.ProductAddAdapter;
 import com.example.mad_project.activities.ProductAddHelper;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 
 // Use the application default credentials
-    public class SellerAddFragment extends Fragment {
+    public class SellerAddFragment extends Fragment{
 //global parameters
     TextInputLayout productName;
     TextInputLayout productQuantity;
     EditText productDescription;
     Spinner spinner;
+    //recyclerview stuff
     RecyclerView productAddRecycler;
+    ProductAddAdapter adapter;
+    ArrayList<ProductAddHelper>productAdd;
+    //temp storing stuff
+    ProductAddHelper addImageHelper=new ProductAddHelper();
+    ProductAddHelper findImageposition=new ProductAddHelper();
+    Holder tempHolder=new Holder();
     //firesotre stuff
     FirebaseFirestore db;
     //button for saving stuff
     Button button;
     //from activity to fragment
     String username,password,name,email,phoneNo;
+    //imageview perm
+    public static final int GET_FROM_GALLERY = 1;
+
 
 
     public SellerAddFragment() {
@@ -66,10 +81,10 @@ import java.util.Map;
         productDescription=view.findViewById(R.id.product_description);
         //spinner settings
         spinner=view.findViewById(R.id.product_category);
-        ArrayAdapter<CharSequence> adapter =ArrayAdapter.createFromResource(getActivity(),R.array.category,
+        ArrayAdapter<CharSequence> spinnerAdapter =ArrayAdapter.createFromResource(getActivity(),R.array.category,
                 android.R.layout.simple_spinner_dropdown_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(spinnerAdapter);
         //recycler view settings
         productAddRecycler=view.findViewById(R.id.product_addPhoto);
         productAddRecycler();
@@ -90,18 +105,12 @@ import java.util.Map;
 //        StaggeredGridLayoutManager lm=new StaggeredGridLayoutManager(4,StaggeredGridLayoutManager.VERTICAL);
         GridLayoutManager lm=new GridLayoutManager(getActivity(),1,GridLayoutManager.HORIZONTAL,false);
         productAddRecycler.setLayoutManager(lm);
-        ArrayList<ProductAddHelper> productAdd = new ArrayList<>();
-        productAdd.add(new ProductAddHelper(R.drawable.empty));
-        productAdd.add(new ProductAddHelper(R.drawable.nicholas));
-        productAdd.add(new ProductAddHelper(R.drawable.accesorieswatches));
-        productAdd.add(new ProductAddHelper(R.drawable.accesorieswatches));
-        productAdd.add(new ProductAddHelper(R.drawable.accesorieswatches));
-        productAdd.add(new ProductAddHelper(R.drawable.accesorieswatches));
-        productAdd.add(new ProductAddHelper(R.drawable.accesorieswatches));
-
-        RecyclerView.Adapter adapter = new ProductAddAdapter(productAdd);
+        productAdd = new ArrayList<>();
+        productAdd.add(new ProductAddHelper(getResources().getDrawable(R.drawable.empty)));
+        adapter = new ProductAddAdapter(productAdd);
         productAddRecycler.setItemAnimator(new DefaultItemAnimator());
         productAddRecycler.setAdapter(adapter);
+
     }
     public View.OnClickListener listProduct=new View.OnClickListener() {
         @Override
@@ -134,5 +143,109 @@ import java.util.Map;
                     });
         }
     };
+
+//image
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        //Detects request codes
+        if(resultCode == Activity.RESULT_OK) {
+            try {
+                Uri selectedImage = data.getData();
+                //selected image stored as bitmap here
+                Bitmap tempBitamp = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), selectedImage);
+                Drawable tempDrawable = new BitmapDrawable(tempBitamp);//convert bitmap to draweable and store as draweable
+                //store to helper
+                addImageHelper.setBitmap(tempBitamp);
+                addImageHelper.setDrawable(tempDrawable);
+                //set image
+                int tempInt= findImageposition.getPosition();
+                ProductAddAdapter.ProductAddHolder tholder= tempHolder.getHolder();
+                productAdd.get(tempInt).setDrawable(tempDrawable);
+                tholder.image.setImageDrawable(productAdd.get(tempInt).getDrawable());
+                productAdd.add(new ProductAddHelper(getResources().getDrawable(R.drawable.empty)));
+                Toast.makeText(getActivity(),"tempInt"+tempInt+"\naddimage"+addImageHelper.getPosition()
+                        +"\ntholder"+tholder.getAdapterPosition(),Toast.LENGTH_SHORT).show();
+
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                Toast.makeText(getActivity(), "" + e, Toast.LENGTH_SHORT).show();
+
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                Toast.makeText(getActivity(), "" + e, Toast.LENGTH_SHORT).show();
+            }catch (Exception e){
+                e.printStackTrace();
+                Toast.makeText(getActivity(), "" + e, Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    public class ProductAddAdapter extends RecyclerView.Adapter<ProductAddAdapter.ProductAddHolder>{
+        ArrayList<ProductAddHelper> productAdd;
+        public ProductAddAdapter(ArrayList<ProductAddHelper> productAdd){
+            this.productAdd = productAdd;
+        }
+
+        @NonNull
+        @Override
+        public ProductAddHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.empty_image,parent,false);
+//         View view = View.inflate(parent.getContext(), R.drawable.empty,parent);
+            ProductAddHolder productAddHolder = new ProductAddHolder(view);
+            return productAddHolder;
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull ProductAddAdapter.ProductAddHolder holder, int position) {
+            //find out the pos
+            String str=Integer.toString(position);
+            tempHolder.setHolder(holder);
+
+            ProductAddHelper productAddHelper = productAdd.get(position);
+            holder.image.setImageDrawable(productAddHelper.getDrawable());
+            //listner
+            holder.image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //display
+                Toast.makeText(view.getContext(),"Recyceview"+str, Toast.LENGTH_SHORT).show();
+                //store position
+                findImageposition.setPosition(Integer.parseInt(str));
+                Intent intent=new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+                startActivityForResult(intent,GET_FROM_GALLERY);
+                }
+            });
+            //        holder.image.setImageResource(position);
+        }
+        @Override
+        public int getItemCount() {
+            return productAdd.size();
+        }
+
+        public class ProductAddHolder extends RecyclerView.ViewHolder{
+
+            ImageView image;
+            Drawable drawable;
+
+            public ProductAddHolder(View itemView) {
+                super(itemView);
+                image = itemView.findViewById(R.id.empty);
+                drawable=image.getDrawable();
+            }
+        }
+    }
+    public static class Holder{
+       private ProductAddAdapter.ProductAddHolder holder;
+       public void setHolder(ProductAddAdapter.ProductAddHolder holder){
+           this.holder=holder;
+       }
+       private ProductAddAdapter.ProductAddHolder getHolder(){
+           return holder;
+       }
+    }
 
 }

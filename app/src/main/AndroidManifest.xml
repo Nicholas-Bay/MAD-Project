@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mad_project">
         <activity
+            android:name=".activities.Electronicstbpage"
+            android:exported="false" />
+        <activity
             android:name=".activities.Foodtbpage"
             android:exported="false" />
         <activity

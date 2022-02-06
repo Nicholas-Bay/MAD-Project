@@ -18,13 +18,17 @@
         <entry key="app/src/main/res/drawable/card3.xml" value="0.21944444444444444" />
         <entry key="app/src/main/res/drawable/card4.xml" value="0.21944444444444444" />
         <entry key="app/src/main/res/drawable/ctr_bg.xml" value="0.23854166666666668" />
+        <entry key="app/src/main/res/drawable/home_bg.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/ic_image_person.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/ic_profilepic2.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/drawable/layout2_bg.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/layout_bg.xml" value="0.23854166666666668" />
         <entry key="app/src/main/res/layout/activity_apple_watchforms.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/activity_applewatchforms.xml" value="0.22395833333333334" />
         <entry key="app/src/main/res/layout/activity_buyer_mainpage.xml" value="0.1203125" />
         <entry key="app/src/main/res/layout/activity_clothingforms.xml" value="0.22395833333333334" />
+        <entry key="app/src/main/res/layout/activity_electronicstbpage.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_foodtbpage.xml" value="0.22395833333333334" />
         <entry key="app/src/main/res/layout/activity_iphone13forms.xml" value="0.22395833333333334" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.335" />

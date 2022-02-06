@@ -13,26 +13,26 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Locale;
 
-public class Foodtbpage extends AppCompatActivity {
+public class Electronicstbpage extends AppCompatActivity {
 
-    //Hooks
-    TextToSpeech textspeech;
+    //hooks
+    TextToSpeech textToSpeech;
     FloatingActionButton speak;
-    TextView fooddesc;
+    TextView techView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_foodtbpage);
+        setContentView(R.layout.activity_electronicstbpage);
+        //find ids
         speak = findViewById(R.id.text2speech2);
-        fooddesc = findViewById(R.id.collapse_food_desc);
-
-        textspeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+        techView = findViewById(R.id.collapse_tech_desc);
+        textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
                 if(status == TextToSpeech.SUCCESS){
-                    int result = textspeech.setLanguage(Locale.ENGLISH);
+                    int result = textToSpeech.setLanguage(Locale.ENGLISH);
                     speak.setEnabled(true);
                 }
                 else {
@@ -49,7 +49,7 @@ public class Foodtbpage extends AppCompatActivity {
         });
     }
     private void speak1(){
-        String Text = fooddesc.getText().toString();
-        textspeech.speak(Text,TextToSpeech.QUEUE_ADD,null);
+        String Text = techView.getText().toString();
+        textToSpeech.speak(Text,TextToSpeech.QUEUE_ADD,null);
     }
 }

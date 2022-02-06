@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import com.example.mad_project.R;
 import com.example.mad_project.activities.CategoriesAdapter;
 import com.example.mad_project.activities.CategoriesHelperClass;
+import com.example.mad_project.activities.Electronicstbpage;
 import com.example.mad_project.activities.FeaturedAdapter;
 import com.example.mad_project.activities.FeaturedHelperClass;
 import com.example.mad_project.activities.Foodtbpage;
@@ -28,7 +29,7 @@ public class BuyerHomeFragment extends Fragment {
     RecyclerView mostviewedRecycler;
     RecyclerView categoriesRecycler;
     RecyclerView.Adapter adapter;
-    ImageView toolfood;
+    ImageView toolfood, tooltech;
     public BuyerHomeFragment() {
         super(R.layout.fragment_buyer_home);
     }
@@ -41,13 +42,23 @@ public class BuyerHomeFragment extends Fragment {
         mostviewedRecycler = view.findViewById(R.id.mostviewed_recycler);
         categoriesRecycler = view.findViewById(R.id.categories_recycler);
         toolfood = view.findViewById(R.id.collapse_food);
+        tooltech = view.findViewById(R.id.collapse_tech);
 
-        //running toolbar
+        //running toolbar for food
         toolfood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), Foodtbpage.class);
                 startActivity(intent);
+            }
+        });
+
+        //running toolbar for tech
+        tooltech.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(getActivity(), Electronicstbpage.class);
+                startActivity(intent1);
             }
         });
 

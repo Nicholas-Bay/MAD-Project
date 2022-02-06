@@ -144,7 +144,7 @@ import java.util.Map;
         }
     };
 
-//image
+//this function obtains the image from the galllery
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -156,17 +156,24 @@ import java.util.Map;
                 //selected image stored as bitmap here
                 Bitmap tempBitamp = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), selectedImage);
                 Drawable tempDrawable = new BitmapDrawable(tempBitamp);//convert bitmap to draweable and store as draweable
-                //store to helper
+                //store the image in bitmap form and drawable to helper
                 addImageHelper.setBitmap(tempBitamp);
                 addImageHelper.setDrawable(tempDrawable);
-                //set image
+                //set the image ont eh recycler view
                 int tempInt= findImageposition.getPosition();
-                ProductAddAdapter.ProductAddHolder tholder= tempHolder.getHolder();
-                productAdd.get(tempInt).setDrawable(tempDrawable);
-                tholder.image.setImageDrawable(productAdd.get(tempInt).getDrawable());
-                productAdd.add(new ProductAddHelper(getResources().getDrawable(R.drawable.empty)));
-                Toast.makeText(getActivity(),"tempInt"+tempInt+"\naddimage"+addImageHelper.getPosition()
-                        +"\ntholder"+tholder.getAdapterPosition(),Toast.LENGTH_SHORT).show();
+                ProductAddAdapter.ProductAddHolder tholder;
+                    tholder= tempHolder.getHolder();
+                    productAdd.get(tempInt).setDrawable(tempDrawable);
+                    ProductAddHelper productAddHelper=productAdd.get(tempInt);
+                    tholder.image.setImageDrawable(productAddHelper.getDrawable());
+                if(tempInt==productAdd.size()-1){
+                    productAdd.add(new ProductAddHelper(getResources().getDrawable(R.drawable.empty)));
+                }
+                Toast.makeText(getActivity(),"tempInt"+tempInt
+                        +"\naddimage"+addImageHelper.getPosition()
+                        +"\ntholder"+tholder.getAdapterPosition()
+                        +"\nproductaddsize"+productAdd.size()
+                        ,Toast.LENGTH_SHORT).show();
 
             } catch (FileNotFoundException e) {
                 // TODO Auto-generated catch block
@@ -203,18 +210,18 @@ import java.util.Map;
         public void onBindViewHolder(@NonNull ProductAddAdapter.ProductAddHolder holder, int position) {
             //find out the pos
             String str=Integer.toString(position);
-            tempHolder.setHolder(holder);
-
             ProductAddHelper productAddHelper = productAdd.get(position);
             holder.image.setImageDrawable(productAddHelper.getDrawable());
             //listner
             holder.image.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //display
+                //display
                 Toast.makeText(view.getContext(),"Recyceview"+str, Toast.LENGTH_SHORT).show();
-                //store position
+                //store holder and position of the photo on clicked
+                tempHolder.setHolder(holder);
                 findImageposition.setPosition(Integer.parseInt(str));
+                //start the activity to get photo from gallery -> i.e photo gallery will pop up
                 Intent intent=new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
                 startActivityForResult(intent,GET_FROM_GALLERY);
                 }

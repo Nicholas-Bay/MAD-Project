@@ -65,6 +65,7 @@
     <com.google.android.material.textfield.TextInputEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="number"
         android:drawablePadding="10dp">
 
     </com.google.android.material.textfield.TextInputEditText>

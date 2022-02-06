@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,8 @@ import com.example.mad_project.activities.ProductAddHelper;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
@@ -50,25 +53,26 @@ import java.util.UUID;
     TextInputLayout productQuantity;
     EditText productDescription;
     Spinner spinner;
-    //recyclerview stuff
+//recyclerview stuff
     RecyclerView productAddRecycler;
     ProductAddAdapter adapter;
     ArrayList<ProductAddHelper>productAdd;
-    //temp storing stuff
+//temp storing stuff
     ProductAddHelper addImageHelper=new ProductAddHelper();
     ProductAddHelper findImageposition=new ProductAddHelper();
     Holder tempHolder=new Holder();
-    //firesotre stuff
+    ArrayList<Uri> batchImageUpload;
+    ArrayList<ImageReference> imageReference;
+//firesotre stuff
     FirebaseFirestore db;
-    //firebase storage stuff
+//firebase storage stuff
     FirebaseStorage storage;
     StorageReference storageReference;
-    ArrayList<Uri> batchImageUpload;
-    //button for saving stuff
+//button for saving stuff
     Button button;
-    //from activity to fragment
+//from activity to fragment
     String username,password,name,email,phoneNo;
-    //imageview perm
+//imageview perm
     public static final int GET_FROM_GALLERY = 1;
 
 
@@ -85,6 +89,7 @@ import java.util.UUID;
         name=getArguments().getString("name");
         email=getArguments().getString("email");
         phoneNo=getArguments().getString("phoneNo");
+
         //text input settings
         productName=view.findViewById(R.id.product_name);
         productQuantity=view.findViewById(R.id.product_quantity);
@@ -110,6 +115,7 @@ import java.util.UUID;
 
         return view;
     }
+//recycler method
     private void productAddRecycler(){
         //default
 //        productAddRecycler.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
@@ -126,6 +132,82 @@ import java.util.UUID;
         productAddRecycler.setAdapter(adapter);
 
     }
+// UploadImage method
+    private void uploadImage(String strProduct) {
+        // Defining storageReference stuff
+        String strUid;
+        StorageReference ref;
+        Uri filePath;
+        for(int i=0;i<batchImageUpload.size();i++){
+            //generate a uuid
+            strUid=UUID.randomUUID().toString();
+            //set ref
+            ref= storageReference.child("images/Seller").child(username).child(strProduct).child(strUid);
+            imageReference.add(new ImageReference(ref.getPath()));
+            filePath=batchImageUpload.get(i);
+            if (filePath != null) {
+
+                // Code for showing progressDialog while uploading
+                ProgressDialog progressDialog
+                        = new ProgressDialog(getActivity());
+                progressDialog.setTitle("Uploading...");
+                progressDialog.show();
+                // adding listeners on upload
+                // or failure of image
+                ref.putFile(filePath)
+                        .addOnSuccessListener(
+                                new OnSuccessListener<UploadTask.TaskSnapshot>() {
+
+                                    @Override
+                                    public void onSuccess(
+                                            UploadTask.TaskSnapshot taskSnapshot) {
+
+                                        // Image uploaded successfully
+                                        // Dismiss dialog
+                                        progressDialog.dismiss();
+                                        Toast
+                                                .makeText(getActivity(),
+                                                        "Image Uploaded!!",
+                                                        Toast.LENGTH_SHORT)
+                                                .show();
+                                    }
+                                })
+
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+
+                                // Error, Image not uploaded
+                                progressDialog.dismiss();
+                                Toast
+                                        .makeText(getActivity(),
+                                                "Failed " + e.getMessage(),
+                                                Toast.LENGTH_SHORT)
+                                        .show();
+                            }
+                        })
+                        .addOnProgressListener(
+                                new OnProgressListener<UploadTask.TaskSnapshot>() {
+
+                                    // Progress Listener for loading
+                                    // percentage on the dialog box
+                                    @Override
+                                    public void onProgress(
+                                            UploadTask.TaskSnapshot taskSnapshot) {
+                                        double progress
+                                                = (100.0
+                                                * taskSnapshot.getBytesTransferred()
+                                                / taskSnapshot.getTotalByteCount());
+                                        progressDialog.setMessage(
+                                                "Uploaded "
+                                                        + (int) progress + "%");
+                                    }
+                                });
+            }
+        }
+
+    }
+
     public View.OnClickListener listProduct=new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -134,14 +216,33 @@ import java.util.UUID;
             String strQuantity=productQuantity.getEditText().getText().toString().trim();
             String category=spinner.getSelectedItem().toString();
             String description=productDescription.getText().toString().trim();
-            //convert imageview to bitmap
+            //check if there is correct data keyed in
+            if(strProduct==null ||strProduct.equals("")) productName.setError("Empty Product Name is Not Allowed");
+            else productName.setError(null);
+            if(spinner.getSelectedItemPosition()==0) Toast.makeText(getActivity(),"Please Select a Category",Toast.LENGTH_SHORT).show();
+            if (strQuantity==null || strQuantity.equals("")) productQuantity.setError("Empty Product Quantity is not Allowed");
+            else productQuantity.setError(null);
+            //below is true if correct data is key in
+            if(productName.getError()==null &&
+                    productQuantity.getError()==null &&
+                    spinner.getSelectedItemPosition()!=0){
+            //getting the refernce of the image
+            imageReference=new ArrayList<>();
+            //uploading image into the FireBase Storage
+            uploadImage(strProduct);
+            //converting it to reference
             //saving the stuff
             Map<String,Object>something=new HashMap<>();
             something.put("product",strProduct);
             something.put("category",category);
             something.put("description",description);
             something.put("quantity",Integer.parseInt(strQuantity));
-            db.collection("Seller").document(username).collection(category).document(strProduct)
+            //saving imageRefernce as string
+            for(int i=0;i<imageReference.size();i++){
+                something.put("image "+i,imageReference.get(i).getImageRef());
+            }
+            db.collection("Seller").document(username)
+                    .collection(category).document(strProduct)
                     .set(something)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
@@ -155,12 +256,12 @@ import java.util.UUID;
                             Toast.makeText(getActivity(), "Fail", Toast.LENGTH_SHORT).show();
                         }
                     });
-            uploadImage();
 
+            }  else Toast.makeText(getActivity(),"Please Complete the form",Toast.LENGTH_SHORT).show();
         }
     };
 
-//this function obtains the image from the galllery
+//this function obtains the image from the gallery
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -208,76 +309,6 @@ import java.util.UUID;
                 Toast.makeText(getActivity(), "" + e, Toast.LENGTH_SHORT).show();
             }
         }
-    }
-    // UploadImage method
-    private void uploadImage() {
-        // Defining the child of storageReference
-        String strUid=UUID.randomUUID().toString();
-        StorageReference ref = storageReference.child("images/"+strUid);
-        Uri filePath;
-        for(int i=0;i<batchImageUpload.size();i++){
-            filePath=batchImageUpload.get(i);
-            if (filePath != null) {
-
-            // Code for showing progressDialog while uploading
-            ProgressDialog progressDialog
-                    = new ProgressDialog(getActivity());
-            progressDialog.setTitle("Uploading...");
-            progressDialog.show();
-            // adding listeners on upload
-            // or failure of image
-            ref.putFile(filePath)
-                    .addOnSuccessListener(
-                            new OnSuccessListener<UploadTask.TaskSnapshot>() {
-
-                                @Override
-                                public void onSuccess(
-                                        UploadTask.TaskSnapshot taskSnapshot) {
-
-                                    // Image uploaded successfully
-                                    // Dismiss dialog
-                                    progressDialog.dismiss();
-                                    Toast
-                                            .makeText(getActivity(),
-                                                    "Image Uploaded!!",
-                                                    Toast.LENGTH_SHORT)
-                                            .show();
-                                }
-                            })
-
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-
-                            // Error, Image not uploaded
-                            progressDialog.dismiss();
-                            Toast
-                                    .makeText(getActivity(),
-                                            "Failed " + e.getMessage(),
-                                            Toast.LENGTH_SHORT)
-                                    .show();
-                        }
-                    })
-                    .addOnProgressListener(
-                            new OnProgressListener<UploadTask.TaskSnapshot>() {
-
-                                // Progress Listener for loading
-                                // percentage on the dialog box
-                                @Override
-                                public void onProgress(
-                                        UploadTask.TaskSnapshot taskSnapshot) {
-                                    double progress
-                                            = (100.0
-                                            * taskSnapshot.getBytesTransferred()
-                                            / taskSnapshot.getTotalByteCount());
-                                    progressDialog.setMessage(
-                                            "Uploaded "
-                                                    + (int) progress + "%");
-                                }
-                            });
-            }
-        }
-
     }
 
 //recyclerview class
@@ -345,5 +376,17 @@ import java.util.UUID;
            return holder;
        }
     }
-
+//another static class to obtain image reference
+    public static class  ImageReference{
+        private String imageRef;
+    public ImageReference(String imageRef){
+        this.imageRef=imageRef;
+    }
+    public String getImageRef() {
+        return imageRef;
+    }
+    public void setImageRef(String imageRef) {
+        this.imageRef = imageRef;
+    }
+    }
 }

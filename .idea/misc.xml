@@ -17,12 +17,15 @@
         <entry key="app/src/main/res/drawable/card2.xml" value="0.21944444444444444" />
         <entry key="app/src/main/res/drawable/card3.xml" value="0.21944444444444444" />
         <entry key="app/src/main/res/drawable/card4.xml" value="0.21944444444444444" />
+        <entry key="app/src/main/res/drawable/ctr_bg.xml" value="0.23854166666666668" />
         <entry key="app/src/main/res/drawable/ic_image_person.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/drawable/ic_profilepic2.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/drawable/layout_bg.xml" value="0.23854166666666668" />
         <entry key="app/src/main/res/layout/activity_apple_watchforms.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/activity_applewatchforms.xml" value="0.22395833333333334" />
         <entry key="app/src/main/res/layout/activity_buyer_mainpage.xml" value="0.1203125" />
         <entry key="app/src/main/res/layout/activity_clothingforms.xml" value="0.22395833333333334" />
+        <entry key="app/src/main/res/layout/activity_foodtbpage.xml" value="0.22395833333333334" />
         <entry key="app/src/main/res/layout/activity_iphone13forms.xml" value="0.22395833333333334" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_playstationforms.xml" value="0.1" />
@@ -32,11 +35,13 @@
         <entry key="app/src/main/res/layout/activity_seller_mainpage.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/activity_splashscreen.xml" value="0.1203125" />
         <entry key="app/src/main/res/layout/categories_design.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/fragment_buyer_calendar.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/fragment_buyer_home.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_buyer_me.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_buyer_product.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_buyer_reputation.xml" value="0.22777777777777777" />
         <entry key="app/src/main/res/layout/fragment_seller_add.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/fragment_seller_home.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/fragment_seller_me.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/menu/bottom_nav_bar_seller.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.13645833333333332" />

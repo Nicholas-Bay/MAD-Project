@@ -123,12 +123,14 @@
                         android:background="@drawable/card2"
                         android:elevation="10dp"
                         android:layout_margin="10dp">
+
                         <ImageView
+                            android:id="@+id/collapse_food"
+                            android:clickable="true"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:src="@drawable/ic_baseline_fastfood_24"
-                            android:layout_centerInParent="true">
-                        </ImageView>
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ic_baseline_fastfood_24"></ImageView>
                     </RelativeLayout>
 
                     <TextView

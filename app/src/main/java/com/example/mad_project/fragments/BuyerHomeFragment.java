@@ -1,4 +1,5 @@
 package com.example.mad_project.fragments;
+import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -9,12 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
 import com.example.mad_project.R;
 import com.example.mad_project.activities.CategoriesAdapter;
 import com.example.mad_project.activities.CategoriesHelperClass;
 import com.example.mad_project.activities.FeaturedAdapter;
 import com.example.mad_project.activities.FeaturedHelperClass;
+import com.example.mad_project.activities.Foodtbpage;
 import com.example.mad_project.activities.mostViewedAdapter;
 import com.example.mad_project.activities.mostViewedHelperClass;
 
@@ -25,6 +28,7 @@ public class BuyerHomeFragment extends Fragment {
     RecyclerView mostviewedRecycler;
     RecyclerView categoriesRecycler;
     RecyclerView.Adapter adapter;
+    ImageView toolfood;
     public BuyerHomeFragment() {
         super(R.layout.fragment_buyer_home);
     }
@@ -36,6 +40,16 @@ public class BuyerHomeFragment extends Fragment {
         featuredRecycler = view.findViewById(R.id.featured_recycler);
         mostviewedRecycler = view.findViewById(R.id.mostviewed_recycler);
         categoriesRecycler = view.findViewById(R.id.categories_recycler);
+        toolfood = view.findViewById(R.id.collapse_food);
+
+        //running toolbar
+        toolfood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Foodtbpage.class);
+                startActivity(intent);
+            }
+        });
 
         featuredRecycler();
         mostViewedRecycler();
@@ -68,7 +82,7 @@ public class BuyerHomeFragment extends Fragment {
         mostViewedDesigns.add(new mostViewedHelperClass(R.drawable.applewatch,"Apple Watch Series 7","One of the Best Watches"));
         mostViewedDesigns.add(new mostViewedHelperClass(R.drawable.asus,"Asus Zenbook","One of the Top Laptops"));
         mostViewedDesigns.add(new mostViewedHelperClass(R.drawable.s21,"Samsung S21 Ultra","Top Phones of the year "));
-        mostViewedDesigns.add(new mostViewedHelperClass(R.drawable.nicholas,"Human Slave","Can Programme For you :)"));
+        mostViewedDesigns.add(new mostViewedHelperClass(R.drawable.nicholas,"Nicholas Bay","Can Programme For you :)"));
 
 
 
@@ -85,6 +99,9 @@ public class BuyerHomeFragment extends Fragment {
 
         categoriesDesign.add(new CategoriesHelperClass(R.drawable.accesorieswatches,"Accessories"));
         categoriesDesign.add(new CategoriesHelperClass(R.drawable.phonescat,"Electronic devices"));
+        categoriesDesign.add(new CategoriesHelperClass(R.drawable.clothing,"Clothing"));
+        categoriesDesign.add(new CategoriesHelperClass(R.drawable.consolescat,"Consoles"));
+
 
         adapter = new CategoriesAdapter(categoriesDesign);
         categoriesRecycler.setAdapter(adapter);

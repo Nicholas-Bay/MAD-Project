@@ -47,31 +47,36 @@
                     android:fontFamily="@font/baloo_paaji"
                     android:layout_centerHorizontal="true">
                 </TextView>
+
                 <RelativeLayout
+                    android:clickable="true"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_below="@id/shopee_app_name"
-                    android:background="#FCFCFC"
                     android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginRight="40dp"
                     android:layout_marginBottom="20dp"
-                    android:elevation="10dp">
+                    android:background="#FCFCFC"
+                    android:elevation="10dp"
+                    android:id="@+id/googleClick">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Search..."
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="15dp">
+                        android:layout_marginLeft="15dp"
+                        android:text="Search...">
 
                     </TextView>
+
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/ic_baseline_search_24"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="15dp">
+                        android:layout_marginRight="15dp"
+                        android:src="@drawable/ic_baseline_search_24">
 
                     </ImageView>
 

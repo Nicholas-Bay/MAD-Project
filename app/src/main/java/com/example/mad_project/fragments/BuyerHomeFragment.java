@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.example.mad_project.R;
 import com.example.mad_project.activities.CategoriesAdapter;
@@ -19,6 +20,8 @@ import com.example.mad_project.activities.Electronicstbpage;
 import com.example.mad_project.activities.FeaturedAdapter;
 import com.example.mad_project.activities.FeaturedHelperClass;
 import com.example.mad_project.activities.Foodtbpage;
+import com.example.mad_project.activities.Googleforms;
+import com.example.mad_project.activities.Iphone13forms;
 import com.example.mad_project.activities.mostViewedAdapter;
 import com.example.mad_project.activities.mostViewedHelperClass;
 
@@ -30,6 +33,7 @@ public class BuyerHomeFragment extends Fragment {
     RecyclerView categoriesRecycler;
     RecyclerView.Adapter adapter;
     ImageView toolfood, tooltech;
+    RelativeLayout google;
     public BuyerHomeFragment() {
         super(R.layout.fragment_buyer_home);
     }
@@ -43,6 +47,16 @@ public class BuyerHomeFragment extends Fragment {
         categoriesRecycler = view.findViewById(R.id.categories_recycler);
         toolfood = view.findViewById(R.id.collapse_food);
         tooltech = view.findViewById(R.id.collapse_tech);
+        google = view.findViewById(R.id.googleClick);
+
+        //launching google search
+        google.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(getActivity().getApplication(), Googleforms.class);
+                startActivity(intent1);
+            }
+        });
 
         //running toolbar for food
         toolfood.setOnClickListener(new View.OnClickListener() {

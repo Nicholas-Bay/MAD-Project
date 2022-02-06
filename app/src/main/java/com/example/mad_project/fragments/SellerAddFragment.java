@@ -1,5 +1,6 @@
 package com.example.mad_project.fragments;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -29,12 +30,17 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 
 // Use the application default credentials
@@ -54,6 +60,10 @@ import java.util.Map;
     Holder tempHolder=new Holder();
     //firesotre stuff
     FirebaseFirestore db;
+    //firebase storage stuff
+    FirebaseStorage storage;
+    StorageReference storageReference;
+    ArrayList<Uri> batchImageUpload;
     //button for saving stuff
     Button button;
     //from activity to fragment
@@ -88,8 +98,12 @@ import java.util.Map;
         //recycler view settings
         productAddRecycler=view.findViewById(R.id.product_addPhoto);
         productAddRecycler();
-        //firestore
+        //firestore settings
         db=FirebaseFirestore.getInstance();
+        //firestorage settings
+        storage=FirebaseStorage.getInstance();
+        storageReference=storage.getReference();
+        batchImageUpload=new ArrayList<>();
         //button settings
         button=view.findViewById(R.id.product_add);
         button.setOnClickListener(listProduct);
@@ -141,6 +155,8 @@ import java.util.Map;
                             Toast.makeText(getActivity(), "Fail", Toast.LENGTH_SHORT).show();
                         }
                     });
+            uploadImage();
+
         }
     };
 
@@ -167,7 +183,10 @@ import java.util.Map;
                     ProductAddHelper productAddHelper=productAdd.get(tempInt);
                     tholder.image.setImageDrawable(productAddHelper.getDrawable());
                 if(tempInt==productAdd.size()-1){
+                    batchImageUpload.add(selectedImage);
                     productAdd.add(new ProductAddHelper(getResources().getDrawable(R.drawable.empty)));
+                }else{
+                    batchImageUpload.set(tempInt,selectedImage);
                 }
                 Toast.makeText(getActivity(),"tempInt"+tempInt
                         +"\naddimage"+addImageHelper.getPosition()
@@ -190,7 +209,78 @@ import java.util.Map;
             }
         }
     }
+    // UploadImage method
+    private void uploadImage() {
+        // Defining the child of storageReference
+        String strUid=UUID.randomUUID().toString();
+        StorageReference ref = storageReference.child("images/"+strUid);
+        Uri filePath;
+        for(int i=0;i<batchImageUpload.size();i++){
+            filePath=batchImageUpload.get(i);
+            if (filePath != null) {
 
+            // Code for showing progressDialog while uploading
+            ProgressDialog progressDialog
+                    = new ProgressDialog(getActivity());
+            progressDialog.setTitle("Uploading...");
+            progressDialog.show();
+            // adding listeners on upload
+            // or failure of image
+            ref.putFile(filePath)
+                    .addOnSuccessListener(
+                            new OnSuccessListener<UploadTask.TaskSnapshot>() {
+
+                                @Override
+                                public void onSuccess(
+                                        UploadTask.TaskSnapshot taskSnapshot) {
+
+                                    // Image uploaded successfully
+                                    // Dismiss dialog
+                                    progressDialog.dismiss();
+                                    Toast
+                                            .makeText(getActivity(),
+                                                    "Image Uploaded!!",
+                                                    Toast.LENGTH_SHORT)
+                                            .show();
+                                }
+                            })
+
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                            // Error, Image not uploaded
+                            progressDialog.dismiss();
+                            Toast
+                                    .makeText(getActivity(),
+                                            "Failed " + e.getMessage(),
+                                            Toast.LENGTH_SHORT)
+                                    .show();
+                        }
+                    })
+                    .addOnProgressListener(
+                            new OnProgressListener<UploadTask.TaskSnapshot>() {
+
+                                // Progress Listener for loading
+                                // percentage on the dialog box
+                                @Override
+                                public void onProgress(
+                                        UploadTask.TaskSnapshot taskSnapshot) {
+                                    double progress
+                                            = (100.0
+                                            * taskSnapshot.getBytesTransferred()
+                                            / taskSnapshot.getTotalByteCount());
+                                    progressDialog.setMessage(
+                                            "Uploaded "
+                                                    + (int) progress + "%");
+                                }
+                            });
+            }
+        }
+
+    }
+
+//recyclerview class
     public class ProductAddAdapter extends RecyclerView.Adapter<ProductAddAdapter.ProductAddHolder>{
         ArrayList<ProductAddHelper> productAdd;
         public ProductAddAdapter(ArrayList<ProductAddHelper> productAdd){
@@ -212,7 +302,7 @@ import java.util.Map;
             String str=Integer.toString(position);
             ProductAddHelper productAddHelper = productAdd.get(position);
             holder.image.setImageDrawable(productAddHelper.getDrawable());
-            //listner
+            //listener
             holder.image.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -245,6 +335,7 @@ import java.util.Map;
             }
         }
     }
+//a static class to obtain the adapter so can use in various function
     public static class Holder{
        private ProductAddAdapter.ProductAddHolder holder;
        public void setHolder(ProductAddAdapter.ProductAddHolder holder){

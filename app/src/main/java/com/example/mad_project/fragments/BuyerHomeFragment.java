@@ -4,15 +4,12 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.example.mad_project.R;
@@ -23,19 +20,19 @@ import com.example.mad_project.activities.FeaturedAdapter;
 import com.example.mad_project.activities.FeaturedHelperClass;
 import com.example.mad_project.activities.Foodtbpage;
 import com.example.mad_project.activities.Googleforms;
-import com.example.mad_project.activities.Iphone13forms;
 import com.example.mad_project.activities.LoginActivity;
+import com.example.mad_project.activities.ShopAdapter;
+import com.example.mad_project.activities.ShopHelperClass;
 import com.example.mad_project.activities.mostViewedAdapter;
 import com.example.mad_project.activities.mostViewedHelperClass;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class BuyerHomeFragment extends Fragment {
     RecyclerView featuredRecycler;
     RecyclerView mostviewedRecycler;
     RecyclerView categoriesRecycler;
+    RecyclerView shopRecycler;
     RecyclerView.Adapter adapter;
     ImageView toolfood, tooltech, logoutbut;
     RelativeLayout google;
@@ -113,6 +110,7 @@ public class BuyerHomeFragment extends Fragment {
 
 
     }
+
 
     private void mostViewedRecycler(){
         mostviewedRecycler.setHasFixedSize(true);

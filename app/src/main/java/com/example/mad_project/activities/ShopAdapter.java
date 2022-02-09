@@ -20,6 +20,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
     public ShopAdapter(Context context, ArrayList<ShopHelperClass> shopItems) {
         this.shopItems = shopItems;
         //this.context = context;
+        //hi
     }
 
     @NonNull

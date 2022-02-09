@@ -1,6 +1,7 @@
 package com.example.mad_project.activities;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 
@@ -30,7 +31,7 @@ public class MainPageBuyerActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
     //firebasestuff firestore
     FirebaseFirestore db;
-    ArrayList<Bundle> productBundle=new ArrayList<>();
+    ArrayList<ProductList> productListArrayList=new ArrayList<>();
     //photo storage
     FirebaseStorage storage;
     StorageReference storageReference;
@@ -60,7 +61,8 @@ public class MainPageBuyerActivity extends AppCompatActivity {
                         if(!queryDocumentSnapshots.isEmpty()){
                             List<DocumentSnapshot> list=queryDocumentSnapshots.getDocuments();
                             for(DocumentSnapshot d:list){
-                                Bundle temp=new Bundle();
+                                ProductList temp=null;
+                                //store as strings or array
                                 Log.d("buyerRead",d.getId()+"=>"+d.getData());
                                 String category=d.get("category").toString();
                                 String description=d.get("description").toString();
@@ -69,21 +71,18 @@ public class MainPageBuyerActivity extends AppCompatActivity {
                                 String username=d.get("username").toString();
                                 String cost=d.get("cost").toString();
                                 ArrayList<String> image= (ArrayList<String>) d.get("image");
-                                temp.putString("category",category);
-                                temp.putString("description",description);
-                                temp.putString("product",product);
-                                temp.putString("quantity",quantity);
-                                temp.putString("username",username);
-                                temp.putString("cost",cost);
-                                temp.putStringArrayList("image",image);
-                                productBundle.add(temp);
+                                //store strings or array into the class
+                                temp=new ProductList(username,category,product,Integer.parseInt(quantity),Double.parseDouble(cost),description,image);
+                                //store a class into arrayList of class
+                                productListArrayList.add(temp);
                             }
                         }
                     }
                 });
-        fireStoreBundle.putParcelableArrayList("fireProduct",productBundle);
-        combinedBundle.putBundle("BuyerProfile",bundle);
-        combinedBundle.putBundle("Products",fireStoreBundle);
+
+//        fireStoreBundle.putParcelableArrayList("FireStoreProductList", (ArrayList<? extends Parcelable>) productListArrayList);
+//        combinedBundle.putBundle("BuyerProfile",bundle);
+//        combinedBundle.putBundle("SellerProduct",fireStoreBundle);
 
         animatedBottomBar = findViewById(R.id.animatedBuyerBottomBar);
         if (savedInstanceState == null) {
@@ -103,7 +102,7 @@ public class MainPageBuyerActivity extends AppCompatActivity {
                     break;
                 case R.id.shop_buyer:
                     fragment = new BuyerShopFragment();
-                    fragment.setArguments(combinedBundle);
+//                    fragment.setArguments(combinedBundle);
                     break;
                 case R.id.me_buyer:
                     fragment = new BuyerMeFragment();
@@ -116,5 +115,30 @@ public class MainPageBuyerActivity extends AppCompatActivity {
             }
             else Log.e(TAG, "Error in creating Fragment");
         });
+    }
+
+    public class ProductList{
+        private String username,category,description,product;
+        private ArrayList<String>image;
+        private int quantity;
+        private double cost;
+        public ProductList(String username,String category
+                ,String product,int quantity,double cost,String description,ArrayList<String> image){
+            this.username=username;
+            this.category=category;
+            this.product=product;
+            this.quantity=quantity;
+            this.description=description;
+            this.image=image;
+            this.cost=cost;
+        }
+
+        public ArrayList<String> getImage() {
+            return image;
+        }
+
+        public String getProduct() {
+            return product;
+        }
     }
 }

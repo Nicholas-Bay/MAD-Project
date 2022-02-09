@@ -21,20 +21,14 @@ import com.example.mad_project.activities.Applewatchforms;
 import com.example.mad_project.activities.Clothingforms;
 import com.example.mad_project.activities.Iphone13forms;
 import com.example.mad_project.activities.MainPageBuyerActivity;
-import com.example.mad_project.activities.ProductAddHelper;
+import com.example.mad_project.activities.ProductList;
 import com.example.mad_project.activities.Ps5forms;
 import com.example.mad_project.activities.Samsungforms;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.core.FirestoreClient;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -47,8 +41,6 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 public class BuyerProductFragment extends Fragment {
@@ -285,31 +277,6 @@ public class BuyerProductFragment extends Fragment {
             public Drawable getDrawable() {
                 return drawable;
             }
-        }
-    }
-
-    public class ProductList{
-        private String username,category,description,product;
-        private ArrayList<String>image;
-        private int quantity;
-        private double cost;
-        public ProductList(String username,String category
-                ,String product,int quantity,double cost,String description,ArrayList<String> image){
-            this.username=username;
-            this.category=category;
-            this.product=product;
-            this.quantity=quantity;
-            this.description=description;
-            this.image=image;
-            this.cost=cost;
-        }
-
-        public ArrayList<String> getImage() {
-            return image;
-        }
-
-        public String getProduct() {
-            return product;
         }
     }
 

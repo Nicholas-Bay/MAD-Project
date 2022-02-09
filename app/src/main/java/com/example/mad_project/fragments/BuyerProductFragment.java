@@ -103,8 +103,9 @@ public class BuyerProductFragment extends Fragment {
                                 String product=d.get("product").toString();
                                 String quantity=d.get("quantity").toString();
                                 String username=d.get("username").toString();
+                                String cost=d.get("cost").toString();
                                 ArrayList<String> image= (ArrayList<String>) d.get("image");
-                                temp=new ProductList(username,category,product,Integer.parseInt(quantity),description,image);
+                                temp=new ProductList(username,category,product,Integer.parseInt(quantity),Double.parseDouble(cost),description,image);
                                 productList.add(temp);
 
                             }
@@ -291,14 +292,16 @@ public class BuyerProductFragment extends Fragment {
         private String username,category,description,product;
         private ArrayList<String>image;
         private int quantity;
+        private double cost;
         public ProductList(String username,String category
-                ,String product,int quantity,String description,ArrayList<String> image){
+                ,String product,int quantity,double cost,String description,ArrayList<String> image){
             this.username=username;
             this.category=category;
             this.product=product;
             this.quantity=quantity;
             this.description=description;
             this.image=image;
+            this.cost=cost;
         }
 
         public ArrayList<String> getImage() {

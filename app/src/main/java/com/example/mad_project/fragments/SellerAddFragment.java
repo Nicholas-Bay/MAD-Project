@@ -51,6 +51,7 @@ import java.util.UUID;
 //global parameters
     TextInputLayout productName;
     TextInputLayout productQuantity;
+    TextInputLayout productCost;
     EditText productDescription;
     Spinner spinner;
 //recyclerview stuff
@@ -92,6 +93,7 @@ import java.util.UUID;
         productName=view.findViewById(R.id.product_name);
         productQuantity=view.findViewById(R.id.product_quantity);
         productDescription=view.findViewById(R.id.product_description);
+        productCost=view.findViewById(R.id.product_cost);
         //spinner settings
         spinner=view.findViewById(R.id.product_category);
         ArrayAdapter<CharSequence> spinnerAdapter =ArrayAdapter.createFromResource(getActivity()
@@ -214,6 +216,8 @@ import java.util.UUID;
             String strQuantity=productQuantity.getEditText().getText().toString().trim();
             String category=spinner.getSelectedItem().toString();
             String description=productDescription.getText().toString().trim();
+            String strCost=productCost.getEditText().getText().toString().trim();
+
             //check if there is correct data keyed in
             if(strProduct==null ||strProduct.equals("")) productName
                     .setError("Empty Product Name is Not Allowed");
@@ -223,9 +227,13 @@ import java.util.UUID;
             if (strQuantity==null || strQuantity.equals("")) productQuantity
                     .setError("Empty Product Quantity is not Allowed");
             else productQuantity.setError(null);
+            if(strCost==null||strCost.equals(""))productCost
+                    .setError("Empty Product Cost is not Allowed");
+            else productCost.setError(null);
             //below is true if correct data is key in
             if(productName.getError()==null &&
                 productQuantity.getError()==null &&
+                productCost.getError()==null &&
                 spinner.getSelectedItemPosition()!=0){
             //getting the refernce of the image
             imageReference=new ArrayList<>();
@@ -239,6 +247,7 @@ import java.util.UUID;
             something.put("description",description);
             something.put("quantity",Integer.parseInt(strQuantity));
             something.put("username",username);
+            something.put("cost",Double.parseDouble(strCost));
             //saving imageRefernce as string
             ArrayList<String> images=new ArrayList<>();
             for(int i=0;i<imageReference.size();i++){

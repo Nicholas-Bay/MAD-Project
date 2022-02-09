@@ -51,7 +51,8 @@
         android:layout_marginEnd="61dp"
         android:layout_marginBottom="10dp"
         android:maxLength="60"
-        android:minHeight="48dp"></Spinner>
+        android:minHeight="48dp"
+        tools:ignore="SpeakableTextPresentCheck"></Spinner>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/product_quantity"
         android:layout_width="350dp"
@@ -70,12 +71,31 @@
 
     </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/product_cost"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/product_quantity"
+        android:hint="Cost in Dollars for Each Product"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="10dp"
+            android:inputType="number|numberDecimal">
+
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <RelativeLayout
         android:id="@+id/relative1"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/product_quantity"
+        android:layout_below="@id/product_cost"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="61dp"
         android:layout_marginBottom="10dp"

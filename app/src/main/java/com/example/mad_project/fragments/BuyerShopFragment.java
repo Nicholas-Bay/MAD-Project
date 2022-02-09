@@ -38,6 +38,15 @@ public class BuyerShopFragment extends Fragment {
 
         shopItems.add(new ShopHelperClass(R.drawable.applewatch, "Apple Watch Series 6", "$500", "Available"));
         shopItems.add(new ShopHelperClass(R.drawable.iphone, "iPhone 13 Pro Max", "$1500", "Available"));
+        shopItems.add(new ShopHelperClass(R.drawable.airpods_max, "Airpods Max", "$600", "Available"));
+        shopItems.add(new ShopHelperClass(R.drawable.airpods_pro, "Airpods Pro", "$1500", "Available"));
+        shopItems.add(new ShopHelperClass(R.drawable.mbp, "Macbook Pro", "$1900", "Available"));
+        shopItems.add(new ShopHelperClass(R.drawable.ipad_pro, "Ipad Pro", "$800", "Available"));
+        shopItems.add(new ShopHelperClass(R.drawable.iphonese, "Iphone SE", "$600", "Available"));
+        shopItems.add(new ShopHelperClass(R.drawable.applecharger, "Apple 25W charger", "$800", "Available"));
+        shopItems.add(new ShopHelperClass(R.drawable.macbookairm2, "Macbook Air M2", "$1200", "UnAvailable"));
+        shopItems.add(new ShopHelperClass(R.drawable.ipadmini, "Ipad mini", "$700", "Available"));
+
 
         adapter = new ShopAdapter(getContext(),shopItems);
         shopRecycler.setAdapter(adapter);

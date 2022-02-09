@@ -48,7 +48,7 @@ public class MainPageBuyerActivity extends AppCompatActivity {
                 case R.id.product_buyer:
                     fragment = new BuyerProductFragment();
                     break;
-                case R.id.calendar_buyer:
+                case R.id.shop_buyer:
                     fragment = new BuyerShopFragment();
                     break;
                 case R.id.me_buyer:

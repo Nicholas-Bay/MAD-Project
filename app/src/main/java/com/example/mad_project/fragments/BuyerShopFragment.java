@@ -1,6 +1,7 @@
 package com.example.mad_project.fragments;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,7 +31,8 @@ public class BuyerShopFragment extends Fragment {
     }
     private void shopRecycler(){
         shopRecycler.setHasFixedSize(true);
-        shopRecycler.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
+        GridLayoutManager layoutManager= new GridLayoutManager(getActivity(),2,GridLayoutManager.VERTICAL,false);
+        shopRecycler.setLayoutManager(layoutManager);
 
         ArrayList<ShopHelperClass> shopItems = new ArrayList<>();
 

@@ -41,10 +41,10 @@ import com.google.firebase.storage.UploadTask;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-
 
 // Use the application default credentials
     public class SellerAddFragment extends Fragment{
@@ -75,8 +75,6 @@ import java.util.UUID;
 //imageview perm
     public static final int GET_FROM_GALLERY = 1;
 
-
-
     public SellerAddFragment() {
         super(R.layout.fragment_seller_add);
     }
@@ -96,8 +94,8 @@ import java.util.UUID;
         productDescription=view.findViewById(R.id.product_description);
         //spinner settings
         spinner=view.findViewById(R.id.product_category);
-        ArrayAdapter<CharSequence> spinnerAdapter =ArrayAdapter.createFromResource(getActivity(),R.array.category,
-                android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<CharSequence> spinnerAdapter =ArrayAdapter.createFromResource(getActivity()
+                ,R.array.category, android.R.layout.simple_spinner_dropdown_item);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(spinnerAdapter);
         //recycler view settings
@@ -207,7 +205,7 @@ import java.util.UUID;
         }
 
     }
-
+//upload into database
     public View.OnClickListener listProduct=new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -217,15 +215,18 @@ import java.util.UUID;
             String category=spinner.getSelectedItem().toString();
             String description=productDescription.getText().toString().trim();
             //check if there is correct data keyed in
-            if(strProduct==null ||strProduct.equals("")) productName.setError("Empty Product Name is Not Allowed");
+            if(strProduct==null ||strProduct.equals("")) productName
+                    .setError("Empty Product Name is Not Allowed");
             else productName.setError(null);
-            if(spinner.getSelectedItemPosition()==0) Toast.makeText(getActivity(),"Please Select a Category",Toast.LENGTH_SHORT).show();
-            if (strQuantity==null || strQuantity.equals("")) productQuantity.setError("Empty Product Quantity is not Allowed");
+            if(spinner.getSelectedItemPosition()==0) Toast.makeText(getActivity()
+                    ,"Please Select a Category",Toast.LENGTH_SHORT).show();
+            if (strQuantity==null || strQuantity.equals("")) productQuantity
+                    .setError("Empty Product Quantity is not Allowed");
             else productQuantity.setError(null);
             //below is true if correct data is key in
             if(productName.getError()==null &&
-                    productQuantity.getError()==null &&
-                    spinner.getSelectedItemPosition()!=0){
+                productQuantity.getError()==null &&
+                spinner.getSelectedItemPosition()!=0){
             //getting the refernce of the image
             imageReference=new ArrayList<>();
             //uploading image into the FireBase Storage
@@ -237,12 +238,16 @@ import java.util.UUID;
             something.put("category",category);
             something.put("description",description);
             something.put("quantity",Integer.parseInt(strQuantity));
+            something.put("username",username);
             //saving imageRefernce as string
+            ArrayList<String> images=new ArrayList<>();
             for(int i=0;i<imageReference.size();i++){
-                something.put("image "+i,imageReference.get(i).getImageRef());
+                images.add(imageReference.get(i).getImageRef());
             }
-            db.collection("Seller").document(username)
-                    .collection(category).document(strProduct)
+            String imageArray[]=images.toArray(new String[images.size()]);
+            something.put("image", Arrays.asList(imageArray));
+            String uuid=UUID.randomUUID().toString();
+            db.collection("Seller").document(""+uuid+strProduct+username)
                     .set(something)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
@@ -260,8 +265,7 @@ import java.util.UUID;
             }  else Toast.makeText(getActivity(),"Please Complete the form",Toast.LENGTH_SHORT).show();
         }
     };
-
-//this function obtains the image from the gallery
+//this function obtains the image to phone from the gallery
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -283,7 +287,7 @@ import java.util.UUID;
                     productAdd.get(tempInt).setDrawable(tempDrawable);
                     ProductAddHelper productAddHelper=productAdd.get(tempInt);
                     tholder.image.setImageDrawable(productAddHelper.getDrawable());
-                if(tempInt==productAdd.size()-1){
+                if(tempInt==productAdd.size()-1){//if the empty image is clicked,change away the empty image and inflate
                     batchImageUpload.add(selectedImage);
                     productAdd.add(new ProductAddHelper(getResources().getDrawable(R.drawable.empty)));
                 }else{
@@ -310,7 +314,6 @@ import java.util.UUID;
             }
         }
     }
-
 //recyclerview class
     public class ProductAddAdapter extends RecyclerView.Adapter<ProductAddAdapter.ProductAddHolder>{
         ArrayList<ProductAddHelper> productAdd;

@@ -136,26 +136,30 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:background="@drawable/bluebg"
-                android:layout_margin="20dp">
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/bluebg">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/autour_one"
+                    android:padding="25dp"
                     android:text="Clothing"
                     android:textColor="@color/black"
-                    android:textSize="25dp"
-                    android:fontFamily="@font/autour_one"
-                    android:padding="25dp"/>
+                    android:textSize="25dp" />
+
                 <Button
                     android:id="@+id/clothing_webpage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Details"
-                    android:textColor="@color/black"
+                    android:layout_alignParentBottom="true"
                     android:background="#00000000"
                     android:padding="20dp"
-                    android:layout_alignParentBottom="true"/>
+                    android:text="Details"
+                    android:textColor="@color/black" />
             </RelativeLayout>
 
             <ImageView
@@ -218,17 +222,20 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:background="@drawable/greenbg"
-                android:layout_margin="20dp">
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/greenbg">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/autour_one"
+                    android:padding="25dp"
                     android:text="PS5"
                     android:textColor="@color/black"
-                    android:textSize="25dp"
-                    android:fontFamily="@font/autour_one"
-                    android:padding="25dp"/>
+                    android:textSize="25dp" />
 
                 <Button
                     android:id="@+id/ps5_webpage"
@@ -249,7 +256,10 @@
                 android:layout_alignParentRight="true"/>
         </RelativeLayout>
 
-
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/buyer_product_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 </ScrollView>

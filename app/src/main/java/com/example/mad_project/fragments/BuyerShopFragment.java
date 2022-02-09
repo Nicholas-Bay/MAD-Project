@@ -1,4 +1,6 @@
 package com.example.mad_project.fragments;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -9,9 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.mad_project.R;
+import com.example.mad_project.activities.BuyerCart;
+import com.example.mad_project.activities.Googleforms;
 import com.example.mad_project.activities.ShopAdapter;
 import com.example.mad_project.activities.ShopHelperClass;
 
@@ -20,12 +25,24 @@ import java.util.ArrayList;
 public class BuyerShopFragment extends Fragment {
     RecyclerView shopRecycler;
     RecyclerView.Adapter adapter;
+    ImageView cartCheckout;
     public BuyerShopFragment() {
         super(R.layout.fragment_buyer_shop);
     }
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_buyer_shop, container, false);
         shopRecycler = view.findViewById(R.id.shop_recycler);
+        cartCheckout = view.findViewById(R.id.cart_checkout);
+
+        //running cart
+        cartCheckout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(getActivity().getApplication(), BuyerCart.class);
+                startActivity(intent1);
+
+            }
+        });
         shopRecycler();
         return view;
     }

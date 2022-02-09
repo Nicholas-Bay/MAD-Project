@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mad_project">
         <activity
+            android:name=".activities.BuyerOrder"
+            android:exported="false" />
+        <activity
+            android:name=".activities.BuyerCart"
+            android:exported="false" />
+        <activity
             android:name=".activities.ShopeeElectronics"
             android:exported="false" />
         <activity

@@ -54,6 +54,7 @@
         <entry key="app/src/main/res/layout/fragment_buyer_me.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_buyer_product.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_buyer_reputation.xml" value="0.22777777777777777" />
+        <entry key="app/src/main/res/layout/fragment_buyer_shop.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/fragment_seller_add.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/fragment_seller_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_seller_me.xml" value="0.23802083333333332" />

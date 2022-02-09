@@ -18,18 +18,18 @@
             android:padding="20dp">
 
             <ImageView
-                android:id="@+id/profilePic"
+                android:id="@+id/seller_ProfilePic"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_centerVertical="true"
                 android:src="@drawable/ic_image_person" />
 
             <TextView
-                android:id="@+id/Full_name"
+                android:id="@+id/seller_Full_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/profilePic"
+                android:layout_toRightOf="@+id/seller_ProfilePic"
                 android:fontFamily="@font/bungee_inline"
                 android:includeFontPadding="false"
                 android:text="Username"
@@ -40,8 +40,8 @@
                 android:id="@+id/seller_display_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/Full_name"
-                android:layout_toRightOf="@+id/profilePic"
+                android:layout_below="@+id/seller_Full_name"
+                android:layout_toRightOf="@+id/seller_ProfilePic"
                 android:includeFontPadding="false"
                 android:text="Username"
                 android:textSize="14sp" />
@@ -74,7 +74,7 @@
                         android:src="@drawable/ic_baseline_payment_24" />
 
                     <TextView
-                        android:id="@+id/payment_label"
+                        android:id="@+id/seller_payment_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
@@ -84,10 +84,10 @@
                         android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/payment_disc"
+                        android:id="@+id/seller_payment_disc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/payment_label"
+                        android:layout_below="@id/seller_payment_label"
                         android:layout_centerHorizontal="true"
                         android:includeFontPadding="false"
                         android:text="Balance"
@@ -120,7 +120,7 @@
                         android:src="@drawable/ic_baseline_star_outline_24" />
 
                     <TextView
-                        android:id="@+id/points_label"
+                        android:id="@+id/seller_points_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
@@ -133,7 +133,7 @@
                         android:id="@+id/points_disc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/points_label"
+                        android:layout_below="@id/seller_points_label"
                         android:layout_centerHorizontal="true"
                         android:includeFontPadding="false"
                         android:text="Loyalty Points"
@@ -155,7 +155,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Full Name"
-                android:id="@+id/profile_fullName"
+                android:id="@+id/seller_profile_fullName"
                 android:layout_marginBottom="10dp">
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -170,7 +170,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email"
-                android:id="@+id/profile_email"
+                android:id="@+id/seller_profile_email"
                 android:layout_marginBottom="10dp">
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -185,7 +185,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Phone No"
-                android:id="@+id/profile_phone"
+                android:id="@+id/seller_profile_phone"
                 android:layout_marginBottom="10dp">
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -200,7 +200,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
-                android:id="@+id/profile_password"
+                android:id="@+id/seller_profile_password"
                 app:passwordToggleEnabled="true"
                 android:inputType="textPassword"
                 android:layout_marginBottom="10dp">
@@ -214,7 +214,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/profile_update"
+                android:id="@+id/seller_profile_update"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#F44336"

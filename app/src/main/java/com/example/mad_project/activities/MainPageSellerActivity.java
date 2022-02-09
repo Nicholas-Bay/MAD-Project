@@ -55,6 +55,7 @@ public class MainPageSellerActivity extends AppCompatActivity {
                     break;
                 case R.id.me_seller:
                     fragment = new SellerMeFragment();
+                    fragment.setArguments(bundle);
                     break;
             }
             if (fragment != null) {

@@ -45,13 +45,13 @@ public class SellerMeFragment extends Fragment {
         email=getArguments().getString("email");
         phoneNo=getArguments().getString("phoneNo");
         //hooks
-        FullName = view.findViewById(R.id.Full_name);
+        FullName = view.findViewById(R.id.seller_Full_name);
         displayUser = view.findViewById(R.id.seller_display_username);
-        ProfileName = view.findViewById(R.id.profile_fullName);
-        ProfileEmail = view.findViewById(R.id.profile_email);
-        ProfilePhone = view.findViewById(R.id.profile_phone);
-        ProfilePassword = view.findViewById(R.id.profile_password);
-        sellerUpdate=view.findViewById(R.id.profile_update);
+        ProfileName = view.findViewById(R.id.seller_profile_fullName);
+        ProfileEmail = view.findViewById(R.id.seller_profile_email);
+        ProfilePhone = view.findViewById(R.id.seller_profile_phone);
+        ProfilePassword = view.findViewById(R.id.seller_profile_password);
+        sellerUpdate=view.findViewById(R.id.seller_profile_update);
         sellerUpdate.setOnClickListener(onUpdate);
         //show data
         showAllUserData(username,password,name,email,phoneNo);

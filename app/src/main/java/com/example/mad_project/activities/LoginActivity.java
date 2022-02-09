@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -28,6 +29,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DatabaseReference;
+import com.mahfa.dnswitch.DayNightSwitch;
+import com.mahfa.dnswitch.DayNightSwitchListener;
 
 import org.json.JSONObject;
 import java.io.BufferedReader;
@@ -45,6 +48,9 @@ public class LoginActivity extends AppCompatActivity {
     //hooks
     TextInputLayout editUsername , editPassword;
     public Button BuyerSignIn , SellerSignIn;
+    View daySky, nightSky;
+    ImageView dayLand, nightLand;
+    DayNightSwitch dayNightSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +63,26 @@ public class LoginActivity extends AppCompatActivity {
         captcha.setChecked(true); // change to `captcha.setChecked(false) when submission
         editUsername = findViewById(R.id.textinputLayout2);
         editPassword = findViewById(R.id.textInputLayout);
+
+        daySky = findViewById(R.id.day_bg);
+        dayLand = findViewById(R.id.day_landscape);
+        nightLand = findViewById(R.id.night_landscape);
+        nightSky = findViewById(R.id.night_bg);
+        dayNightSwitch = findViewById(R.id.day_night_switch);
+
+        dayNightSwitch.setListener(new DayNightSwitchListener() {
+            @Override
+            public void onSwitch(boolean is_night) {
+                if(is_night){
+                    daySky.animate().alpha(0).setDuration(1000);
+                    dayLand.animate().alpha(0).setDuration(1000);
+                }
+                else{
+                    daySky.animate().alpha(1).setDuration(1000);
+                    dayLand.animate().alpha(1).setDuration(1000);
+                }
+            }
+        });
 
     }
     private Boolean validateUsername(){

@@ -36,7 +36,7 @@ public class BuyerShopFragment extends Fragment {
 
         ArrayList<ShopHelperClass> shopItems = new ArrayList<>();
 
-        shopItems.add(new ShopHelperClass(R.drawable.applewatch, "Apple Watch Series 6", "$500", "Available"));
+        shopItems.add(new ShopHelperClass(R.drawable.applewatch, "Apple Watch Series 7", "$500", "Available"));
         shopItems.add(new ShopHelperClass(R.drawable.iphone, "iPhone 13 Pro Max", "$1500", "Available"));
         shopItems.add(new ShopHelperClass(R.drawable.airpods_max, "Airpods Max", "$600", "Available"));
         shopItems.add(new ShopHelperClass(R.drawable.airpods_pro, "Airpods Pro", "$1500", "Available"));

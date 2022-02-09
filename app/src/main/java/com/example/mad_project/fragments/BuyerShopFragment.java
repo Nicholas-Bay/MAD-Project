@@ -9,13 +9,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.example.mad_project.R;
 
-public class BuyerCalendarFragment extends Fragment {
-    public BuyerCalendarFragment() {
-        super(R.layout.fragment_buyer_calendar);
+public class BuyerShopFragment extends Fragment {
+    public BuyerShopFragment() {
+        super(R.layout.fragment_buyer_shop);
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_buyer_calendar, container, false);
+        View view = inflater.inflate(R.layout.fragment_buyer_shop, container, false);
         Button button = view.findViewById(R.id.calendar_button);
         button.setOnClickListener(v -> {
             Toast.makeText(getActivity(), "It fucking works", Toast.LENGTH_SHORT).show();

@@ -4,6 +4,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.example.mad_project.R;
@@ -22,17 +24,20 @@ import com.example.mad_project.activities.FeaturedHelperClass;
 import com.example.mad_project.activities.Foodtbpage;
 import com.example.mad_project.activities.Googleforms;
 import com.example.mad_project.activities.Iphone13forms;
+import com.example.mad_project.activities.LoginActivity;
 import com.example.mad_project.activities.mostViewedAdapter;
 import com.example.mad_project.activities.mostViewedHelperClass;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class BuyerHomeFragment extends Fragment {
     RecyclerView featuredRecycler;
     RecyclerView mostviewedRecycler;
     RecyclerView categoriesRecycler;
     RecyclerView.Adapter adapter;
-    ImageView toolfood, tooltech;
+    ImageView toolfood, tooltech, logoutbut;
     RelativeLayout google;
     public BuyerHomeFragment() {
         super(R.layout.fragment_buyer_home);
@@ -48,6 +53,7 @@ public class BuyerHomeFragment extends Fragment {
         toolfood = view.findViewById(R.id.collapse_food);
         tooltech = view.findViewById(R.id.collapse_tech);
         google = view.findViewById(R.id.googleClick);
+        logoutbut = view.findViewById(R.id.logout_button);
 
         //launching google search
         google.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +82,15 @@ public class BuyerHomeFragment extends Fragment {
             }
         });
 
+        //running logout button
+        logoutbut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent2);
+            }
+        });
+
         featuredRecycler();
         mostViewedRecycler();
         categoriesRecycler();
@@ -92,10 +107,11 @@ public class BuyerHomeFragment extends Fragment {
         featuredDesigns.add(new FeaturedHelperClass(R.drawable.asus,"Asus Laptop ","One of The Top Laptop of The Year "));
         featuredDesigns.add(new FeaturedHelperClass(R.drawable.s21,"Samsung S21 Ultra","One of The Top Android Phone of The Year "));
 
-        adapter = new FeaturedAdapter(featuredDesigns);
+        adapter = new FeaturedAdapter(getContext(),featuredDesigns);
         featuredRecycler.setAdapter(adapter);
 
-        //featuredRecycler.smoothScrollToPosition(adapter.getItemCount() - 1);
+
+
     }
 
     private void mostViewedRecycler(){
@@ -128,7 +144,7 @@ public class BuyerHomeFragment extends Fragment {
         categoriesDesign.add(new CategoriesHelperClass(R.drawable.consolescat,"Consoles"));
 
 
-        adapter = new CategoriesAdapter(categoriesDesign);
+        adapter = new CategoriesAdapter(getContext(),categoriesDesign);
         categoriesRecycler.setAdapter(adapter);
         GradientDrawable gradient1 = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, new int[]{0xffeff400, 0xffaff600});
     }

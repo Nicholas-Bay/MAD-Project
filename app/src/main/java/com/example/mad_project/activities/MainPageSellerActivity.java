@@ -16,14 +16,14 @@ public class MainPageSellerActivity extends AppCompatActivity {
     private static final String TAG = MainPageSellerActivity.class.getSimpleName();
     private AnimatedBottomBar animatedBottomBar;
     private FragmentManager fragmentManager;
-    //bundle to pass activty to fragment
+    //bundle to pass activity to fragment
     Bundle bundle=new Bundle();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seller_mainpage);
         //getting data from loginActivity and storing into bundle
-        //so that we can pass bundle to the framgnets
+        //so that we can pass bundle to the fragments
         Intent intent=getIntent();
         bundle.putString("username",intent.getStringExtra("username"));
         bundle.putString("password",intent.getStringExtra("password"));

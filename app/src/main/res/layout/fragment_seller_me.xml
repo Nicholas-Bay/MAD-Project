@@ -1,209 +1,233 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.SellerMeFragment">
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="200dp"
-        android:layout_height="250dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/empty_profile_pic"
-        android:paddingTop="30dp"
-
-        />
-
-    <TextView
-        android:id="@id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="Seller Name"
-        android:textColor="#ffffff"
-        android:layout_below="@id/imageView4"
-        android:textSize="30sp" />
-
-    <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textView"
-        android:layout_centerHorizontal="true"
-        android:numStars="5"
-        android:progressTint="@color/rating_color"
-        android:stepSize="0.5"
-        tools:ignore="SpeakableTextPresentCheck"
-
-        />
-
-    <TextView
-        android:id="@+id/seller_me_points"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ratingBar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="-6dp"
-        android:clickable="false"
-        android:text="10000"
-        android:textSize="50sp"
-        android:translationX="-25dp" />
-
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="95dp"
-        android:layout_height="92dp"
-        android:layout_below="@+id/ratingBar"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="-26dp"
-        android:layout_marginTop="-19dp"
-        android:layout_marginEnd="91dp"
-        android:layout_marginBottom="-7dp"
-        android:layout_toEndOf="@+id/seller_me_points"
-        android:src="@drawable/points_icon" />
-
+    tools:context=".fragments.SellerMeFragment"
+    android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_below="@id/seller_me_points"
-        android:paddingTop="10dp"
-        android:theme="@style/Theme.Mad_project.seller_me_btn"
-        >
+        android:orientation="vertical">
 
-
-        <LinearLayout
-            android:id="@+id/seller_me_redemption1"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:theme="@style/Theme.Mad_project.seller_me_btn.btnAnimation"
-            >
-
-            <TextView
-                android:id="@+id/seller_me_text1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:text="FREE\nBUMPS"
-                android:textSize="25dp"
-
-                />
-
-            <TextView
-                android:id="@+id/seller_me_points1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="1000"
-                android:textSize="50dp"
-                android:textAlignment="gravity"
-                android:layout_gravity="center_vertical"/>
+            android:layout_height="300dp"
+            android:background="#F44336"
+            android:padding="20dp">
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/profilePic"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_image_person" />
+
+            <TextView
+                android:id="@+id/Full_name"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/profilePic"
+                android:fontFamily="@font/bungee_inline"
+                android:includeFontPadding="false"
+                android:text="Username"
+                android:textSize="24sp" />
+
+            <TextView
+
+                android:id="@+id/seller_display_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Full_name"
+                android:layout_toRightOf="@+id/profilePic"
+                android:includeFontPadding="false"
+                android:text="Username"
+                android:textSize="14sp" />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:layout_marginTop="-100dp">
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="125dp"
                 android:layout_weight="1"
-                android:src="@drawable/points_icon"
-                android:textAlignment="gravity"
-                android:layout_gravity="center_vertical"
-                />
+                android:layout_margin="10dp"
+                app:cardElevation="20dp"
+                app:cardBackgroundColor="#FFA500">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#F44336"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/ic_baseline_payment_24" />
+
+                    <TextView
+                        android:id="@+id/payment_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/bungee_inline"
+                        android:includeFontPadding="false"
+                        android:text="$123"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/payment_disc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/payment_label"
+                        android:layout_centerHorizontal="true"
+                        android:includeFontPadding="false"
+                        android:text="Balance"
+                        android:textSize="20sp" />
+
+
+                </RelativeLayout>
+
+
+
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="125dp"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                app:cardElevation="20dp"
+                app:cardBackgroundColor="#FFA500">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#F44336"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/ic_baseline_star_outline_24" />
+
+                    <TextView
+                        android:id="@+id/points_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/bungee_inline"
+                        android:includeFontPadding="false"
+                        android:text="1000 Points"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/points_disc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/points_label"
+                        android:layout_centerHorizontal="true"
+                        android:includeFontPadding="false"
+                        android:text="Loyalty Points"
+                        android:textSize="20sp" />
+
+
+                </RelativeLayout>
+
+
+
+            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"/>
         <LinearLayout
-            android:id="@+id/seller_me_redemption2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            >
-
-            <TextView
-                android:id="@+id/seller_me_text2"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:orientation="vertical">
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="FREE\nGIFT BAG"
-                android:textSize="25dp"
-                android:textAlignment="gravity"
-                android:layout_gravity="center_vertical"
+                android:hint="Full Name"
+                android:id="@+id/profile_fullName"
+                android:layout_marginBottom="10dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_image_person"
+                    android:drawablePadding="10dp">
+                </com.google.android.material.textfield.TextInputEditText>
 
-                />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/seller_me_points2"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="1000"
-                android:textSize="50dp"
-                android:textAlignment="gravity"
-                android:layout_gravity="center_vertical"
+                android:hint="Email"
+                android:id="@+id/profile_email"
+                android:layout_marginBottom="10dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_baseline_email_24"
+                    android:drawablePadding="10dp">
+                </com.google.android.material.textfield.TextInputEditText>
 
-                />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:src="@drawable/points_icon"
-                android:textAlignment="gravity"
-                android:layout_gravity="center_vertical"/>
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"/>
-
-        <LinearLayout
-            android:id="@+id/seller_me_redemption3"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            >
-
-            <TextView
-                android:id="@+id/seller_me_text3"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="SERVICE\nTEXT OFF"
-                android:textSize="25dp"
-                android:textAlignment="gravity"
-                android:layout_gravity="center_vertical"
-                />
+                android:hint="Phone No"
+                android:id="@+id/profile_phone"
+                android:layout_marginBottom="10dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_baseline_local_phone_24"
+                    android:drawablePadding="10dp">
+                </com.google.android.material.textfield.TextInputEditText>
 
-            <TextView
-                android:id="@+id/seller_me_points3"
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="1000"
-                android:textSize="50dp"
-                android:textAlignment="gravity"
-                android:layout_gravity="center_vertical"/>
+                android:hint="Password"
+                android:id="@+id/profile_password"
+                app:passwordToggleEnabled="true"
+                android:inputType="textPassword"
+                android:layout_marginBottom="10dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:drawableLeft="@drawable/ic_baseline_verified_user_24"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp">
+                </com.google.android.material.textfield.TextInputEditText>
 
-            <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:src="@drawable/points_icon"
-                android:textAlignment="gravity"
-                android:layout_gravity="center_vertical"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/profile_update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#F44336"
+                android:fontFamily="@font/bungee_inline"
+                android:text="Update Credentials"
+                android:textColor="#150D0B"
+                android:textColorHighlight="#D68181"
+                android:textColorHint="#F34646"
+                app:rippleColor="#574343">
+
+            </Button>
+
         </LinearLayout>
     </LinearLayout>
 
-</RelativeLayout>
+</ScrollView>

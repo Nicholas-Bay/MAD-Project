@@ -38,7 +38,7 @@
 
         <TextView
 
-            android:id="@+id/buyer_display_username"
+            android:id="@+id/seller_display_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/Full_name"

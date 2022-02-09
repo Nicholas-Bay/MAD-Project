@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import com.example.mad_project.R;
-import com.example.mad_project.fragments.BuyerCalendarFragment;
+import com.example.mad_project.fragments.BuyerShopFragment;
 import com.example.mad_project.fragments.BuyerHomeFragment;
 import com.example.mad_project.fragments.BuyerMeFragment;
 import com.example.mad_project.fragments.BuyerProductFragment;
@@ -49,7 +49,7 @@ public class MainPageBuyerActivity extends AppCompatActivity {
                     fragment = new BuyerProductFragment();
                     break;
                 case R.id.calendar_buyer:
-                    fragment = new BuyerCalendarFragment();
+                    fragment = new BuyerShopFragment();
                     break;
                 case R.id.me_buyer:
                     fragment = new BuyerMeFragment();

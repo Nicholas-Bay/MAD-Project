@@ -13,6 +13,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mad_project">
         <activity
+            android:name=".activities.ShopeeElectronics"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ShopeeClothing"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ShopeeAccesories"
+            android:exported="false" />
+        <activity
+            android:name=".activities.walletsforms"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Asuslaptopforms"
+            android:exported="false" />
+        <activity
             android:name=".activities.Googleforms"
             android:exported="false" />
         <activity

@@ -8,6 +8,7 @@
     android:layout_margin="10dp">
 
     <LinearLayout
+        android:id="@+id/featured_card_design"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp"

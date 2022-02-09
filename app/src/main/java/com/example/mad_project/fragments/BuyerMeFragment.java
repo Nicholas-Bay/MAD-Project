@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.mad_project.R;
-import com.example.mad_project.activities.RegisterActivity;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -31,7 +30,7 @@ public class BuyerMeFragment extends Fragment {
     //firebase
     FirebaseDatabase rootNode;
     DatabaseReference reference;
-    //transferred data from previous activtiy
+    //transferred data from previous activity
     String username,password,email,name,phoneNo;
     public BuyerMeFragment() {
         super(R.layout.fragment_buyer_me);
@@ -47,7 +46,7 @@ public class BuyerMeFragment extends Fragment {
         phoneNo=getArguments().getString("phoneNo");
         //hooks
         FullName = view.findViewById(R.id.Full_name);
-        displayUser = view.findViewById(R.id.buyer_display_username);
+        displayUser = view.findViewById(R.id.seller_display_username);
         ProfileName = view.findViewById(R.id.profile_fullName);
         ProfileEmail = view.findViewById(R.id.profile_email);
         ProfilePhone = view.findViewById(R.id.profile_phone);
@@ -137,7 +136,7 @@ public class BuyerMeFragment extends Fragment {
 
         }
         else if (!special_char.matcher(pwd).find()){
-            error += "Password must have at least a special character\n";
+            error += "Password must have at least 1 special character\n";
             ProfilePassword.setError("Password must have at least a special character");
         }
 

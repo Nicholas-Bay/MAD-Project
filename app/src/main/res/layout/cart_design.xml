@@ -19,6 +19,7 @@
             app:srcCompat="@drawable/applewatch" />
 
         <TextView
+            android:id="@+id/cart_product"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Apple watch"
@@ -28,6 +29,7 @@
             android:textSize="18dp"/>
 
         <TextView
+            android:id="@+id/cart_quantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Quantity : 2"
@@ -35,6 +37,7 @@
             android:textColor="@color/black"/>
 
         <TextView
+            android:id="@+id/cart_totalPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Total price : $1000"

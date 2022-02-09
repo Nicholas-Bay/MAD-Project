@@ -21,8 +21,6 @@ import com.example.mad_project.activities.FeaturedHelperClass;
 import com.example.mad_project.activities.Foodtbpage;
 import com.example.mad_project.activities.Googleforms;
 import com.example.mad_project.activities.LoginActivity;
-import com.example.mad_project.activities.ShopAdapter;
-import com.example.mad_project.activities.ShopHelperClass;
 import com.example.mad_project.activities.mostViewedAdapter;
 import com.example.mad_project.activities.mostViewedHelperClass;
 

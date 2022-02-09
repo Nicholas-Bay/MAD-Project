@@ -1,4 +1,5 @@
 package com.example.mad_project.fragments;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -169,9 +170,6 @@ public class BuyerProductFragment extends Fragment {
         //
         recyclerView=view.findViewById(R.id.buyer_product_recycler);
         buyerProductRecycler();
-
-
-
         return view;
     }
     private void buyerProductRecycler(){
@@ -182,7 +180,7 @@ public class BuyerProductFragment extends Fragment {
         //side by side
 //        StaggeredGridLayoutManager lm=new StaggeredGridLayoutManager(4,StaggeredGridLayoutManager.VERTICAL);
         GridLayoutManager lm=new GridLayoutManager(getActivity(),1,GridLayoutManager.VERTICAL,false);
-        adapter=new BuyerProductAdapter(productList);
+        adapter=new BuyerProductAdapter(getContext(),productList);
         recyclerView.setLayoutManager(lm);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
@@ -191,8 +189,10 @@ public class BuyerProductFragment extends Fragment {
 
     public class BuyerProductAdapter extends RecyclerView.Adapter<BuyerProductAdapter.BuyerProductHolder>{
         private ArrayList<ProductList> productList;
-        public BuyerProductAdapter(ArrayList<ProductList> productList){
+        private Context context;
+        public BuyerProductAdapter(Context context,ArrayList<ProductList> productList){
             this.productList = productList;
+            this.context=context;
         }
 
         @NonNull
@@ -224,7 +224,8 @@ public class BuyerProductFragment extends Fragment {
                         .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                                Toast.makeText(getActivity(),"Picture Loaded Success",Toast.LENGTH_SHORT).show();
+                                //idk will have crash if i use getActivity so ya
+                                Toast.makeText(context,"Picture Loaded Success",Toast.LENGTH_SHORT).show();
                                 Bitmap bitmap= BitmapFactory.decodeFile(localFile.getAbsolutePath());
                                 holder.image.setImageBitmap(bitmap);
                             }

@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +26,7 @@ import android.widget.Toast;
 
 import com.example.mad_project.R;
 import com.example.mad_project.activities.BuyerCart;
+import com.example.mad_project.activities.ItemsInCart;
 import com.example.mad_project.activities.MainPageBuyerActivity;
 import com.example.mad_project.activities.ProductList;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -48,8 +48,9 @@ public class BuyerShopFragment extends Fragment{
     RecyclerView.Adapter adapter;
     ImageView cartCheckout;
 //    Bundle fireStoreBundle=new Bundle();
-    ArrayList<ProductList> productArrayList;
-    ArrayList<ShopHelperClass> shopItems;
+    ArrayList<ProductList> productArrayList;// from server
+    ArrayList<ShopHelperClass> shopItems; //local
+    public ArrayList<ItemsInCart> itemAddtoCart=new ArrayList<>();
 //    firestore
     FirebaseFirestore db;
     //firebase storage
@@ -73,8 +74,9 @@ public class BuyerShopFragment extends Fragment{
         cartCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(getActivity().getApplication(), BuyerCart.class);
-                startActivity(intent1);
+                Intent i= new Intent(getActivity(), BuyerCart.class);
+//                i.putExtra("getItems",itemAddedToCart);
+                startActivity(i);
             }
         });
         shopRecycler();
@@ -177,7 +179,7 @@ public class BuyerShopFragment extends Fragment{
 
     }
 
-    public static class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder> {
+    public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder> {
 
         ArrayList<ShopHelperClass> shopItems;
         Context context;
@@ -228,6 +230,13 @@ public class BuyerShopFragment extends Fragment{
                 @Override
                 public void onClick(View view) {
                     Toast.makeText(context,"addedToCart",Toast.LENGTH_SHORT).show();
+                    String tempNameProduct=holder.name.getText().toString();
+                    String tempPriceProduct=holder.price.getText().toString();
+                    String tempStateProduct=holder.state.getText().toString();
+                    Drawable tempImageProduct=holder.image.getDrawable();
+                    String tempValueQty=holder.valueQty.getText().toString();
+                    itemAddtoCart.add(new ItemsInCart(tempImageProduct,
+                            tempNameProduct,tempPriceProduct,tempValueQty,tempStateProduct));
                 }
             });
         }
@@ -237,7 +246,7 @@ public class BuyerShopFragment extends Fragment{
             return shopItems.size();
         }
 
-        public static class ShopViewHolder extends RecyclerView.ViewHolder {
+        public class ShopViewHolder extends RecyclerView.ViewHolder {
 
             ImageView image;
             TextView name, price, state;
@@ -256,11 +265,6 @@ public class BuyerShopFragment extends Fragment{
                 incrementQty=itemView.findViewById(R.id.increment);
                 valueQty=itemView.findViewById(R.id.value);
                 addToCart=itemView.findViewById(R.id.addToCartButton);
-
-            }
-
-            public EditText getValueQty() {
-                return valueQty;
             }
         }
     }
@@ -297,6 +301,5 @@ public class BuyerShopFragment extends Fragment{
             return state;
         }
     }
-
 
 }

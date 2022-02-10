@@ -4,42 +4,40 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.15052083333333333" />
+        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/drawable/card3.xml" value="0.1171875" />
+        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/activity_buyer_cart.xml" value="0.264" />
+        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/activity_buyer_mainpage.xml" value="0.1" />
+        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/activity_buyer_order.xml" value="0.136" />
+        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/activity_clothingforms.xml" value="0.11197916666666667" />
+        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/activity_electronicstbpage.xml" value="0.136" />
+        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/activity_iphone13forms.xml" value="0.11197916666666667" />
         <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/activity_login.xml" value="0.13333333333333333" />
+        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/buyer_product_recycler.xml" value="0.264" />
+        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/buyer_product_recycler_2.xml" value="0.2" />
+        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/cart_design.xml" value="0.4" />
         <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/categories_design.xml" value="0.6" />
         <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/featured_design.xml" value="0.13269927536231885" />
+        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/fragment_buyer_cart.xml" value="0.11197916666666667" />
         <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/fragment_buyer_home.xml" value="0.2532146389713155" />
         <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/fragment_buyer_me.xml" value="0.4" />
-        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/fragment_buyer_product.xml" value="0.13269927536231885" />
+        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/fragment_buyer_order.xml" value="0.536" />
+        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/fragment_buyer_product.xml" value="0.2" />
         <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/fragment_buyer_reputation.xml" value="0.10840932117527863" />
-        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/fragment_seller_add.xml" value="0.36505190311418684" />
+        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/fragment_buyer_shop.xml" value="0.72" />
+        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/fragment_seller_add.xml" value="0.264" />
+        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/fragment_seller_me.xml" value="0.11197916666666667" />
         <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/mostviewed_design.xml" value="0.264" />
+        <entry key="..\:/Ephraim/MAD/AndroidStudioProjects/MAD-Project/app/src/main/res/layout/shop_row.xml" value="0.4" />
         <entry key="app/src/main/res/drawable/card1.xml" value="0.21944444444444444" />
         <entry key="app/src/main/res/drawable/card2.xml" value="0.21944444444444444" />
         <entry key="app/src/main/res/drawable/card3.xml" value="0.21944444444444444" />
         <entry key="app/src/main/res/drawable/card4.xml" value="0.21944444444444444" />
-        <entry key="app/src/main/res/drawable/ctr2_bg.xml" value="0.16354166666666667" />
-        <entry key="app/src/main/res/drawable/ctr_bg.xml" value="0.23854166666666668" />
-        <entry key="app/src/main/res/drawable/day_bg.xml" value="0.23703703703703705" />
-        <entry key="app/src/main/res/drawable/home_bg.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/ic_image_person.xml" value="0.25416666666666665" />
-        <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/ic_profilepic2.xml" value="0.25416666666666665" />
-        <entry key="app/src/main/res/drawable/layout2_bg.xml" value="0.25" />
-        <entry key="app/src/main/res/drawable/layout_bg.xml" value="0.23854166666666668" />
-        <entry key="app/src/main/res/drawable/night_bg.xml" value="0.23703703703703705" />
-        <entry key="app/src/main/res/drawable/orderbg.xml" value="0.23703703703703705" />
-        <entry key="app/src/main/res/drawable/seller_bg.xml" value="0.23981481481481481" />
-        <entry key="app/src/main/res/drawable/textbox.xml" value="0.23703703703703705" />
         <entry key="app/src/main/res/layout/activity_apple_watchforms.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/activity_applewatchforms.xml" value="0.22395833333333334" />
-        <entry key="app/src/main/res/layout/activity_asuslaptopforms.xml" value="0.23802083333333332" />
-        <entry key="app/src/main/res/layout/activity_buyer_cart.xml" value="0.22395833333333334" />
         <entry key="app/src/main/res/layout/activity_buyer_mainpage.xml" value="0.1203125" />
-        <entry key="app/src/main/res/layout/activity_buyer_order.xml" value="0.22395833333333334" />
         <entry key="app/src/main/res/layout/activity_clothingforms.xml" value="0.22395833333333334" />
-        <entry key="app/src/main/res/layout/activity_electronicstbpage.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_foodtbpage.xml" value="0.22395833333333334" />
-        <entry key="app/src/main/res/layout/activity_googleforms.xml" value="0.10625" />
         <entry key="app/src/main/res/layout/activity_iphone13forms.xml" value="0.22395833333333334" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_playstationforms.xml" value="0.1" />
@@ -47,30 +45,14 @@
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/activity_samsungforms.xml" value="0.22395833333333334" />
         <entry key="app/src/main/res/layout/activity_seller_mainpage.xml" value="0.23802083333333332" />
-        <entry key="app/src/main/res/layout/activity_shopee_accesories.xml" value="0.23802083333333332" />
-        <entry key="app/src/main/res/layout/activity_shopee_clothing.xml" value="0.22395833333333334" />
-        <entry key="app/src/main/res/layout/activity_shopee_electronics.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/activity_splashscreen.xml" value="0.1203125" />
-        <entry key="app/src/main/res/layout/activity_walletsforms.xml" value="0.22395833333333334" />
-        <entry key="app/src/main/res/layout/cart_design.xml" value="0.375" />
         <entry key="app/src/main/res/layout/categories_design.xml" value="0.23802083333333332" />
-        <entry key="app/src/main/res/layout/empty_image.xml" value="0.23802083333333332" />
-        <entry key="app/src/main/res/layout/featured_design.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_buyer_calendar.xml" value="0.23802083333333332" />
-        <entry key="app/src/main/res/layout/fragment_buyer_cart.xml" value="0.22395833333333334" />
-        <entry key="app/src/main/res/layout/fragment_buyer_home.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_buyer_logout.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_buyer_home.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_buyer_me.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_buyer_order.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/fragment_buyer_product.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_buyer_reputation.xml" value="0.22777777777777777" />
-        <entry key="app/src/main/res/layout/fragment_buyer_shop.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_seller_add.xml" value="0.23802083333333332" />
-        <entry key="app/src/main/res/layout/fragment_seller_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_seller_me.xml" value="0.23802083333333332" />
-        <entry key="app/src/main/res/layout/fragment_seller_reputation.xml" value="0.23802083333333332" />
-        <entry key="app/src/main/res/layout/shop_row.xml" value="0.25" />
-        <entry key="app/src/main/res/menu/bottom_nav_bar_buyer.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/menu/bottom_nav_bar_seller.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.13645833333333332" />
       </map>

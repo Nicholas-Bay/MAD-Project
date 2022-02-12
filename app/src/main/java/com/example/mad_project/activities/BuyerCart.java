@@ -155,5 +155,10 @@ public class BuyerCart extends AppCompatActivity{
             }
         }
 
+        //function to return to previous activity
+        @Override
+        public void onBackPressed(){
+        this.finish();
+        }
 
 }

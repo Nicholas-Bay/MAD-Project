@@ -58,9 +58,8 @@ public class BuyerShopFragment extends Fragment{
     //firebase storage
     FirebaseStorage storage;
     StorageReference storageReference;
-    //
-    Intent intent;
-    //things need to pass to cart check out activity
+
+    //A Local Data Base for cart
     LocalDataBase localDataBaseHelper=null;
     //
     public BuyerShopFragment() {
@@ -68,14 +67,12 @@ public class BuyerShopFragment extends Fragment{
     }
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_buyer_shop, container, false);
-        intent= new Intent(getContext(), BuyerCart.class);
         //set id
         shopRecycler = view.findViewById(R.id.shop_recycler);
         cartCheckout = view.findViewById(R.id.cart_checkout);
 
         productArrayList=new ArrayList<>();
         shopItems = new ArrayList<>();
-
 
         localDataBaseHelper=new LocalDataBase(getContext());
         localDataBaseHelper.getWritableDatabase().execSQL("create table if not exists productInCart(" +
@@ -88,6 +85,7 @@ public class BuyerShopFragment extends Fragment{
         cartCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent= new Intent(getContext(), BuyerCart.class);
                 startActivity(intent);
             }
         });
@@ -140,21 +138,19 @@ public class BuyerShopFragment extends Fragment{
                 imageStorage.getFile(localFile)
                         .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                             @Override
-                            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                                //idk will have crash if i use getActivity so ya
-                                Toast.makeText(getActivity(),"Picture Loaded Success for "+product,Toast.LENGTH_SHORT).show();
+                            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot)throws NullPointerException{
+//                                Toast.makeText(getContext(), "Picture Loaded Success for "+product,Toast.LENGTH_SHORT).show();
                                 Bitmap bitmap= BitmapFactory.decodeFile(localFile.getAbsolutePath());
                                 if(quantity!=0)
                                 shopItems.add(new ShopHelperClass(new BitmapDrawable(getResources(),bitmap),product,"$"+price,"Available"));
                                 else
-                                    shopItems.add(new ShopHelperClass(new BitmapDrawable(getResources(),bitmap),product,"$"+price,"UnAvailable"));
+                                    shopItems.add(new ShopHelperClass(new BitmapDrawable(   getResources(),bitmap),product,"$"+price,"UnAvailable"));
 
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(getActivity(),"Picture Loaded Failed",Toast.LENGTH_SHORT).show();
-
                     }
                 });
 

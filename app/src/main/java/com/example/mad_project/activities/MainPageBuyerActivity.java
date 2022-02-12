@@ -29,9 +29,9 @@ public class MainPageBuyerActivity extends AppCompatActivity {
     private static final String TAG = MainPageBuyerActivity.class.getSimpleName();
     private AnimatedBottomBar animatedBottomBar;
     private FragmentManager fragmentManager;
+
     //firebasestuff firestore
     FirebaseFirestore db;
-    ArrayList<ProductList> productListArrayList=new ArrayList<>();
     //photo storage
     FirebaseStorage storage;
     StorageReference storageReference;
@@ -74,15 +74,10 @@ public class MainPageBuyerActivity extends AppCompatActivity {
                                 //store strings or array into the class
                                 temp=new ProductList(username,category,product,Integer.parseInt(quantity),Double.parseDouble(cost),description,image);
                                 //store a class into arrayList of class
-                                productListArrayList.add(temp);
                             }
                         }
                     }
                 });
-
-//        fireStoreBundle.putParcelableArrayList("FireStoreProductList", (ArrayList<? extends Parcelable>) productListArrayList);
-//        combinedBundle.putBundle("BuyerProfile",bundle);
-//        combinedBundle.putBundle("SellerProduct",fireStoreBundle);
 
         animatedBottomBar = findViewById(R.id.animatedBuyerBottomBar);
         if (savedInstanceState == null) {
@@ -102,7 +97,6 @@ public class MainPageBuyerActivity extends AppCompatActivity {
                     break;
                 case R.id.shop_buyer:
                     fragment = new BuyerShopFragment();
-//                    fragment.setArguments(combinedBundle);
                     break;
                 case R.id.me_buyer:
                     fragment = new BuyerMeFragment();

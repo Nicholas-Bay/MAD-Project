@@ -62,7 +62,7 @@ public class BuyerCart extends AppCompatActivity{
         }
         //display totalPrice
         totalPrice=findViewById(R.id.total_price);
-        totalPrice.setText(""+0);
+        totalPrice.setText("Total price:"+0);
         //button for ordering
         placeOrder = findViewById(R.id.place_order);
         placeOrder.setOnClickListener(new View.OnClickListener() {

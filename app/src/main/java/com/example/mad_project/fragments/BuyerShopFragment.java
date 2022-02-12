@@ -149,7 +149,6 @@ public class BuyerShopFragment extends Fragment{
                                 else
                                     shopItems.add(new ShopHelperClass(new BitmapDrawable(getResources(),bitmap),product,"$"+price,"UnAvailable"));
 
-
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -250,22 +249,29 @@ public class BuyerShopFragment extends Fragment{
             holder.addToCart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    String tempNameProduct=holder.name.getText().toString();
-                    String tempPriceProduct=holder.price.getText().toString();
-                    String tempStateProduct=holder.state.getText().toString();
-                    String tempValueQty=holder.valueQty.getText().toString();
-                    Toast.makeText(context,tempNameProduct+" addedToCart",Toast.LENGTH_SHORT).show();
+                    String tempNameProduct = holder.name.getText().toString();
+                    String tempPriceProduct = holder.price.getText().toString();
+                    String tempStateProduct = holder.state.getText().toString();
+                    String tempValueQty = holder.valueQty.getText().toString();
+                    if (tempValueQty.equals("0")) {
+                        Toast.makeText(context, "Please add more than 0 "
+                                + tempNameProduct + " into your cart", Toast.LENGTH_SHORT).show();
 
-                    Drawable tempImageProduct=holder.image.getDrawable();
-                    Bitmap temp=((BitmapDrawable)tempImageProduct).getBitmap();
-                    ByteArrayOutputStream baos=new ByteArrayOutputStream();
-                    temp.compress(Bitmap.CompressFormat.JPEG,100,baos);
-                    byte[] tempImageByte=baos.toByteArray();
+                    } else {
+                        Toast.makeText(context, tempNameProduct + " addedToCart", Toast.LENGTH_SHORT).show();
+
+                        Drawable tempImageProduct = holder.image.getDrawable();
+                        Bitmap temp = ((BitmapDrawable) tempImageProduct).getBitmap();
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        temp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                        byte[] tempImageByte = baos.toByteArray();
 
 //                    itemAddtoCart.add(new ItemsInCart(tempImageByte,
 //                            tempNameProduct,tempPriceProduct,tempValueQty,tempStateProduct));
-                    localDataBaseHelper.insert(tempNameProduct,
-                            tempPriceProduct,tempValueQty,tempStateProduct,tempImageByte);
+                        localDataBaseHelper.insert(tempNameProduct,
+                                tempPriceProduct, tempValueQty, tempStateProduct, tempImageByte);
+                        holder.valueQty.setText("" + 0);
+                    }
                 }
             });
         }

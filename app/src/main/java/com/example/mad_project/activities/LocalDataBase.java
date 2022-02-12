@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class LocalDataBase extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME="productCart.db";
+    private static final String DATABASE_NAME="local.db";
     private static final int SCHEMA_VERSION=1;
 
     public LocalDataBase(Context context){

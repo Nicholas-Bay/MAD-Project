@@ -1,7 +1,6 @@
 package com.example.mad_project.fragments;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -27,7 +26,7 @@ import android.widget.Toast;
 import com.example.mad_project.R;
 import com.example.mad_project.activities.BuyerCart;
 import com.example.mad_project.activities.ItemsInCart;
-import com.example.mad_project.activities.MainPageBuyerActivity;
+import com.example.mad_project.activities.LocalDataBase;
 import com.example.mad_project.activities.ProductList;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -38,45 +37,58 @@ import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.lang.ref.Reference;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BuyerShopFragment extends Fragment{
+    //recyclerview
     RecyclerView shopRecycler;
     RecyclerView.Adapter adapter;
+    //cart
     ImageView cartCheckout;
-//    Bundle fireStoreBundle=new Bundle();
+    //store stuff
     ArrayList<ProductList> productArrayList;// from server
-    ArrayList<ShopHelperClass> shopItems; //local
-    public ArrayList<ItemsInCart> itemAddtoCart=new ArrayList<>();
-//    firestore
+    ArrayList<ShopHelperClass> shopItems; //localClass
+//  firestore
     FirebaseFirestore db;
     //firebase storage
     FirebaseStorage storage;
     StorageReference storageReference;
+    //
+    Intent intent;
+    //things need to pass to cart check out activity
+    LocalDataBase localDataBaseHelper=null;
+    //
     public BuyerShopFragment() {
         super(R.layout.fragment_buyer_shop);
     }
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_buyer_shop, container, false);
+        intent= new Intent(getContext(), BuyerCart.class);
+        //set id
         shopRecycler = view.findViewById(R.id.shop_recycler);
         cartCheckout = view.findViewById(R.id.cart_checkout);
-//        fireStoreBundle=getArguments().getBundle("SellerProduct");
-//        productArrayList=getArguments().getParcelableArrayList("FireStoreProductList");
 
         productArrayList=new ArrayList<>();
         shopItems = new ArrayList<>();
 
+
+        localDataBaseHelper=new LocalDataBase(getContext());
+        localDataBaseHelper.getWritableDatabase().execSQL("create table if not exists productInCart(" +
+                " _id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                +" productName TEXT,productPrice TEXT, productQty TEXT, " +
+                "productState TEXT,productImage BLOB)");
+        //scan for products
         dbScan();
         //running cart
         cartCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(getActivity(), BuyerCart.class);
-//                i.putExtra("getItems",itemAddedToCart);
-                startActivity(i);
+                startActivity(intent);
             }
         });
         shopRecycler();
@@ -102,19 +114,22 @@ public class BuyerShopFragment extends Fragment{
                                 String quantity=d.get("quantity").toString();
                                 String username=d.get("username").toString();
                                 String cost=d.get("cost").toString();
+
                                 ArrayList<String> image= (ArrayList<String>) d.get("image");
                                 //store strings or array into the class
                                 temp=new ProductList(username,category,product,Integer.parseInt(quantity),Double.parseDouble(cost),description,image);
                                 //store a class into arrayList of class
                                 productArrayList.add(temp);
-                                get1ImageFBD(image,product,cost);
+                                get1ImageFBD(image,product,cost,Integer.parseInt(quantity));
+                                //store in intent
+
                             }
                         }
                     }
                 });
     }
     //getImagePathAndDownloadIt
-    private void get1ImageFBD(ArrayList<String>tempImageRef,String product, String price){
+    private void get1ImageFBD(ArrayList<String>tempImageRef,String product, String price,int quantity){
         //get Image
         if (!tempImageRef.isEmpty()) {
             String tempImage1=tempImageRef.get(0);
@@ -127,9 +142,14 @@ public class BuyerShopFragment extends Fragment{
                             @Override
                             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                                 //idk will have crash if i use getActivity so ya
-                                Toast.makeText(getContext(),"Picture Loaded Success",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(),"Picture Loaded Success for "+product,Toast.LENGTH_SHORT).show();
                                 Bitmap bitmap= BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                                shopItems.add(new ShopHelperClass(bitmap,product,"$"+price,"AVAILABLE"));
+                                if(quantity!=0)
+                                shopItems.add(new ShopHelperClass(new BitmapDrawable(getResources(),bitmap),product,"$"+price,"Available"));
+                                else
+                                    shopItems.add(new ShopHelperClass(new BitmapDrawable(getResources(),bitmap),product,"$"+price,"UnAvailable"));
+
+
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -200,15 +220,16 @@ public class BuyerShopFragment extends Fragment{
 
         @Override
         public void onBindViewHolder(@NonNull ShopViewHolder holder, int position) {
-            if(position<shopItems.size()) {
                 ShopHelperClass shopHelperClass = shopItems.get(position);
                 holder.image.setImageDrawable(shopHelperClass.getImage());
                 holder.name.setText(shopHelperClass.getName());
                 holder.price.setText(shopHelperClass.getPrice());
                 holder.state.setText(shopHelperClass.getState());
-            }
-            else{
-            }
+                if (shopHelperClass.getState().equals("UnAvailable")){
+                    holder.incrementQty.setActivated(false);
+                    holder.decrementQty.setActivated(false);
+                    holder.addToCart.setActivated(false);
+                }
             holder.incrementQty.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -229,14 +250,22 @@ public class BuyerShopFragment extends Fragment{
             holder.addToCart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(context,"addedToCart",Toast.LENGTH_SHORT).show();
                     String tempNameProduct=holder.name.getText().toString();
                     String tempPriceProduct=holder.price.getText().toString();
                     String tempStateProduct=holder.state.getText().toString();
-                    Drawable tempImageProduct=holder.image.getDrawable();
                     String tempValueQty=holder.valueQty.getText().toString();
-                    itemAddtoCart.add(new ItemsInCart(tempImageProduct,
-                            tempNameProduct,tempPriceProduct,tempValueQty,tempStateProduct));
+                    Toast.makeText(context,tempNameProduct+" addedToCart",Toast.LENGTH_SHORT).show();
+
+                    Drawable tempImageProduct=holder.image.getDrawable();
+                    Bitmap temp=((BitmapDrawable)tempImageProduct).getBitmap();
+                    ByteArrayOutputStream baos=new ByteArrayOutputStream();
+                    temp.compress(Bitmap.CompressFormat.JPEG,100,baos);
+                    byte[] tempImageByte=baos.toByteArray();
+
+//                    itemAddtoCart.add(new ItemsInCart(tempImageByte,
+//                            tempNameProduct,tempPriceProduct,tempValueQty,tempStateProduct));
+                    localDataBaseHelper.insert(tempNameProduct,
+                            tempPriceProduct,tempValueQty,tempStateProduct,tempImageByte);
                 }
             });
         }
@@ -250,7 +279,6 @@ public class BuyerShopFragment extends Fragment{
 
             ImageView image;
             TextView name, price, state;
-            FrameLayout shopItems;
             Button decrementQty , incrementQty, addToCart;
             EditText valueQty;
 
@@ -260,7 +288,6 @@ public class BuyerShopFragment extends Fragment{
                 name = itemView.findViewById(R.id.shop_name);
                 price = itemView.findViewById(R.id.shop_price);
                 state = itemView.findViewById(R.id.shop_state);
-                shopItems = itemView.findViewById(R.id.shop_recycler);
                 decrementQty=itemView.findViewById(R.id.decrement);
                 incrementQty=itemView.findViewById(R.id.increment);
                 valueQty=itemView.findViewById(R.id.value);
@@ -269,17 +296,11 @@ public class BuyerShopFragment extends Fragment{
         }
     }
 
-    public static class ShopHelperClass {
+    public class ShopHelperClass {
         Drawable image;
         String name, price, state;
         public ShopHelperClass(Drawable image, String name, String price, String state) {
             this.image = image;
-            this.name = name;
-            this.price = price;
-            this.state = state;
-        }
-        public ShopHelperClass(Bitmap bitmap, String name, String price, String state) {
-            this.image = new BitmapDrawable(Resources.getSystem(),bitmap) ;
             this.name = name;
             this.price = price;
             this.state = state;

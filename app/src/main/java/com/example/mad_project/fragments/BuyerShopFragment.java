@@ -1,6 +1,7 @@
 package com.example.mad_project.fragments;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -142,15 +143,17 @@ public class BuyerShopFragment extends Fragment{
 //                                Toast.makeText(getContext(), "Picture Loaded Success for "+product,Toast.LENGTH_SHORT).show();
                                 Bitmap bitmap= BitmapFactory.decodeFile(localFile.getAbsolutePath());
                                 if(quantity!=0)
-                                shopItems.add(new ShopHelperClass(new BitmapDrawable(getResources(),bitmap),product,"$"+price,"Available"));
+                                shopItems.add(new ShopHelperClass(new BitmapDrawable(Resources.getSystem(),bitmap),product,"$"+price,"Available"));
                                 else
-                                    shopItems.add(new ShopHelperClass(new BitmapDrawable(   getResources(),bitmap),product,"$"+price,"UnAvailable"));
+                                shopItems.add(new ShopHelperClass(new BitmapDrawable(getResources(),bitmap),product,"$"+price,"UnAvailable"));
 
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(getActivity(),"Picture Loaded Failed",Toast.LENGTH_SHORT).show();
+                        shopItems.add(new ShopHelperClass(getResources().getDrawable(R.drawable.empty),product,"$"+price,"Available"));
+
                     }
                 });
 
@@ -307,6 +310,7 @@ public class BuyerShopFragment extends Fragment{
             this.price = price;
             this.state = state;
         }
+
 
         public Drawable getImage() {
             return image;

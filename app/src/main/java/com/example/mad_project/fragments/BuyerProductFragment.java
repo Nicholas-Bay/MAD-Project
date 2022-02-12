@@ -1,4 +1,5 @@
 package com.example.mad_project.fragments;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -205,7 +206,7 @@ public class BuyerProductFragment extends Fragment {
             ProductList tempList=productList.get(position);
             String tempProductName=tempList.getProduct();
             holder.productName.setText(tempProductName);
-
+            //image Creation
             ArrayList<String> tempImageRef=tempList.getImage();
             if (!tempImageRef.isEmpty()) {
             String tempImage1=tempImageRef.get(0);
@@ -225,7 +226,8 @@ public class BuyerProductFragment extends Fragment {
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getActivity(),"Picture Loaded Failed",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context,"Picture Loaded Failed",Toast.LENGTH_SHORT).show();
+                        holder.image.setImageResource(R.drawable.empty);
 
                     }
                 });

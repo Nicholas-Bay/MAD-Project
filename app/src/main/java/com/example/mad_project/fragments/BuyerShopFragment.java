@@ -150,8 +150,8 @@ public class BuyerShopFragment extends Fragment{
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getActivity(),"Picture Loaded Failed",Toast.LENGTH_SHORT).show();
+                    public void onFailure(@NonNull Exception e)throws NullPointerException {
+                        Toast.makeText(getContext(),"Picture Loaded Failed",Toast.LENGTH_SHORT).show();
                         shopItems.add(new ShopHelperClass(getResources().getDrawable(R.drawable.empty),product,"$"+price,"Available"));
 
                     }

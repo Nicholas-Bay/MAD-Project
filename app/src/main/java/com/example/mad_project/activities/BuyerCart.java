@@ -107,8 +107,16 @@ public class BuyerCart extends AppCompatActivity{
             holder.cartQuantity.setText("Quantity: "+item.getQty());
             //convert bytearray to imageview
             Drawable image =null;
+            try {
             image = new BitmapDrawable(getResources(),BitmapFactory.decodeByteArray(item.getImage(), 0, item.getImage().length));
             holder.imageView.setImageDrawable(image);
+            }
+            catch (Exception e){
+                e.printStackTrace();
+                holder.imageView.setImageResource(R.drawable.empty);
+                Toast.makeText(context,"size too large",Toast.LENGTH_SHORT).show();
+            }
+
             //count total price where totalprice=qty*pice
             String strPrice = item.getPrice();
             String strQty = item.getQty();
